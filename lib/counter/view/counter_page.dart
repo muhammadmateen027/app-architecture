@@ -18,7 +18,7 @@ class CounterView extends StatelessWidget {
     final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
-      body: const Center(child: CounterText()),
+      body: const Center(child: _CounterText()),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -38,12 +38,22 @@ class CounterView extends StatelessWidget {
   }
 }
 
-class CounterText extends StatelessWidget {
-  const CounterText({super.key});
+class _CounterText extends StatelessWidget {
+  const _CounterText({super.key});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Text('0', style: theme.textTheme.displayLarge);
+  }
+}
+
+class CounterDetail extends StatelessWidget {
+  const CounterDetail({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Text('Hello World', style: theme.textTheme.displayLarge);
   }
 }

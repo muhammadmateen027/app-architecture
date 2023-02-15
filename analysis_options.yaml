@@ -1,4 +1,164 @@
-include: package:very_good_analysis/analysis_options.4.0.0.yaml
+# Specify analysis options.
+#
+# Until there are meta linter rules, each desired lint must be explicitly enabled.
+# See: https://github.com/dart-lang/linter/issues/288
+#
+# For a list of lints, see: http://dart-lang.github.io/linter/lints/
+# See the configuration guide for more
+# https://github.com/dart-lang/sdk/tree/master/pkg/analyzer#configuring-the-analyzer
+#
+# There are four similar analysis options files in the flutter repos:
+#   - analysis_options.yaml (this file)
+#   - packages/flutter/lib/analysis_options_user.yaml
+#   - https://github.com/flutter/plugins/blob/master/analysis_options.yaml
+#   - https://github.com/flutter/engine/blob/master/analysis_options.yaml
+#
+# This file contains the analysis options used by Flutter tools, such as IntelliJ,
+# Android Studio, and the `flutter analyze` command.
+#
+# The flutter/plugins repo contains a copy of this file, which should be kept
+# in sync with this file.
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  language:
+    # To be enforced:
+    strict-inference: true
+    strict-raw-types: true
+    # To be enforced:
+    # strong-mode:
+    # implicit-dynamic: false
+  errors:
+    # treat missing required parameters as a warning (not a hint)
+    missing_required_param: warning
+    # treat missing returns as a warning (not a hint)
+    missing_return: warning
+    # allow having TODOs in the code
+    todo: ignore
+    deprecated_member_use: ignore
+    missing_enum_constant_in_switch: error
+  plugins:
+    - dart_code_metrics
+
+  exclude:
+    - lib/**/*.g.dart
+    - test/**/*.g.dart
+    - lib/generated/intl/*
+    - test/mocks.dart
+    - test/persistance/database/migration/generated/*
+    - test/firebase/firebase_mock.dart
+    - lib/generated/l10n.dart
+    - test/persistance/database/migration/generated/*
+    - lib/generated_plugin_registrant.dart
+
+dart_code_metrics:
+  metrics:
+    cyclomatic-complexity: 20
+    lines-of-executable-code: 500
+    number-of-arguments: 6
+    maximum-nesting: 5
+  metrics-exclude:
+    - test/**
+    - linux/**
+  rules:
+    - newline-before-return
+    - no-boolean-literal-compare
+    - prefer-trailing-comma
+    - no-equal-then-else
+
 linter:
   rules:
-    public_member_api_docs: false
+    # these rules are documented on and in the same order as
+    # the Dart Lint rules page to make maintenance easier
+    # https://github.com/dart-lang/linter/blob/master/example/all.yaml
+    depend_on_referenced_packages: false
+    always_declare_return_types: true
+    always_put_control_body_on_new_line: true
+    always_put_required_named_parameters_first: true
+    always_use_package_imports: true
+    avoid_bool_literals_in_conditional_expressions: true
+    avoid_catches_without_on_clauses: true
+    avoid_catching_errors: true
+    avoid_classes_with_only_static_members: true
+    avoid_double_and_int_checks: true
+    avoid_equals_and_hash_code_on_mutable_classes: true
+    avoid_escaping_inner_quotes: true
+    avoid_field_initializers_in_const_classes: true
+    avoid_implementing_value_types: true
+    avoid_js_rounded_ints: true
+    avoid_multiple_declarations_per_line: true
+    avoid_private_typedef_functions: true
+    avoid_redundant_argument_values: true
+    avoid_returning_null: true
+    avoid_returning_null_for_future: true
+    avoid_returning_this: true
+    avoid_setters_without_getters: true
+    avoid_slow_async_io: true
+    avoid_type_to_string: true
+    avoid_unused_constructor_parameters: true
+    avoid_void_async: true
+    cancel_subscriptions: true
+    cascade_invocations: true
+    cast_nullable_to_non_nullable: true
+    close_sinks: true
+    comment_references: true
+    deprecated_consistency: true
+    directives_ordering: true
+    do_not_use_environment: true
+    eol_at_end_of_file: true
+    join_return_with_assignment: true
+    leading_newlines_in_multiline_strings: true
+    lines_longer_than_80_chars: true
+    literal_only_boolean_expressions: true
+    missing_whitespace_between_adjacent_strings: true
+    no_adjacent_strings_in_list: true
+    no_leading_underscores_for_library_prefixes: true
+    no_leading_underscores_for_local_identifiers: true
+    no_runtimeType_toString: true
+    null_check_on_nullable_type_parameter: true
+    one_member_abstracts: true
+    only_throw_errors: true
+    package_api_docs: true
+    parameter_assignments: true
+    prefer_asserts_in_initializer_lists: true
+    prefer_constructors_over_static_methods: true
+    prefer_final_in_for_each: true
+    prefer_final_locals: true
+    # disabled as its in collision with using super for properties that are passed to super constructor
+    prefer_final_parameters: false
+    prefer_foreach: true
+    prefer_if_elements_to_conditional_expressions: true
+    prefer_int_literals: true
+    prefer_interpolation_to_compose_strings: true
+    prefer_mixin: true
+    prefer_null_aware_method_calls: true
+    prefer_single_quotes: true
+    require_trailing_commas: true
+    sized_box_shrink_expand: true
+    sort_child_properties_last: true
+    sort_constructors_first: true
+    sort_unnamed_constructors_first: true
+    test_types_in_equals: true
+    throw_in_finally: true
+    tighten_type_of_initializing_formals: true
+    unawaited_futures: true
+    unnecessary_await_in_return: true
+    unnecessary_constructor_name: true
+    unnecessary_lambdas: true
+    unnecessary_null_aware_assignments: true
+    unnecessary_null_checks: true
+    unnecessary_nullable_for_final_variable_declarations: true
+    unnecessary_parenthesis: true
+    unnecessary_raw_strings: true
+    unnecessary_statements: true
+    unsafe_html: true
+    use_decorated_box: true
+    use_if_null_to_convert_nulls_to_bools: true
+    use_is_even_rather_than_modulo: true
+    use_late_for_private_fields_and_variables: true
+    use_named_constants: true
+    use_raw_strings: true
+    use_setters_to_change_properties: true
+    use_string_buffers: true
+    use_test_throws_matchers: true
+    use_to_and_as_if_applicable: true

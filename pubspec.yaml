@@ -1,5 +1,5 @@
 name: stars
-description: A flutter app to invest time to setup arcitecture basement
+description: A flutter app to invest time to setup architecture basement
 version: 1.0.0+1
 publish_to: none
 
@@ -8,15 +8,26 @@ environment:
   flutter: 3.7.1
 
 dependencies:
+  connectivity_plus: ^3.0.3
+  dio: ^5.0.0
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  flutter_redux: ^0.10.0
   intl: ^0.17.0
+  json_annotation: ^4.8.0
 
 dev_dependencies:
+  build: ^2.3.1
+  build_runner: ^2.3.2
+  built_value_generator: ^8.4.3
+  built_value: ^8.4.3
   flutter_test:
     sdk: flutter
+  flutter_lints: ^2.0.1
+  json_serializable: ^6.5.4
   mocktail: ^0.3.0
   very_good_analysis: ^4.0.0
 
