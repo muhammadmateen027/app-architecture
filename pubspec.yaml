@@ -8,11 +8,18 @@ environment:
   flutter: 3.7.1
 
 dependencies:
+  build_runner: ^2.4.0
+  connectivity_plus: ^3.0.3
+  dio: ^5.0.0
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
+  json_annotation: ^4.8.0
+  json_serializable: ^6.6.1
+  meta: ^1.8.0
 
 dev_dependencies:
   flutter_test:
