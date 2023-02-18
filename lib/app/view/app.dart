@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:stars/counter/counter.dart';
 import 'package:stars/l10n/l10n.dart';
+import 'package:stars/system/startup/graph.dart';
 
-class App extends StatelessWidget {
-  const App({super.key});
+class Application extends StatelessWidget {
+  const Application({required this.graph, super.key});
+
+  final Graph graph;
 
   @override
   Widget build(BuildContext context) {

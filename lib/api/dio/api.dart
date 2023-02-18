@@ -11,14 +11,12 @@ typedef DioResponseType = dynamic;
 class ApiImpl implements Api {
   const ApiImpl(
     this.dio,
-    this.environment,
-    this.connectivity, [
+    this.environment, [
     this.assertions = const ApiAssertions(),
   ]);
 
   final Dio dio;
   final Environment environment;
-  final Connectivity connectivity;
   final ApiAssertions assertions;
 
   String get _hostname => 'https://${environment.domain}';
@@ -39,7 +37,7 @@ class ApiImpl implements Api {
 
   @override
   Future<void> launches() async {
-    await assertions.assertOnline(connectivity);
+    // await assertions.assertOnline(connectivity);
 
     final url = '$_hostname/$_versionOne/launches';
 

@@ -1,6 +1,5 @@
 import 'package:built_value/built_value.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/widgets.dart' as w;
 import 'package:stars/api/api.dart';
 import 'package:stars/api/environment.dart';
 import 'package:stars/system/startup/disposable.dart';
@@ -14,10 +13,6 @@ abstract class Graph implements Built<Graph, GraphBuilder>, Disposable {
 
   Map<String, dynamic> get arguments;
 
-  /// Used for external calls
-  Dio get externalDio;
-
-  /// Used for internal calls to Badger Backend
   Dio get internalDio;
 
   Api get api;
@@ -25,6 +20,4 @@ abstract class Graph implements Built<Graph, GraphBuilder>, Disposable {
   Environment get environment;
 
   double get timeDilation;
-
-  w.NavigatorObserver get analyticsObserver;
 }

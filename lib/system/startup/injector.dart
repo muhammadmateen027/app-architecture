@@ -17,20 +17,22 @@ class InjectorWidget extends InheritedWidget {
       return injector.graph;
     }
 
-    throw FlutterError.fromParts(<DiagnosticsNode>[
-      ErrorSummary(
-        'InjectorWidget.of() called with a context that '
-        'does not contain a InjectorWidget.',
-      ),
-      ErrorDescription(
-        'No InjectorWidget ancestor could be found starting from the context '
-        'that was passed to InjectorWidget.of(). '
-        'This usually happens when the context provided is from the same '
-        'StatefulWidget as that whose build function actually creates '
-        'the InjectorWidget widget being sought.',
-      ),
-      context.describeElement('The context used was'),
-    ]);
+    throw FlutterError.fromParts(
+      <DiagnosticsNode>[
+        ErrorSummary(
+          'InjectorWidget.of() called with a context that '
+          'does not contain a InjectorWidget.',
+        ),
+        ErrorDescription(
+          'No InjectorWidget ancestor could be found starting from the context '
+          'that was passed to InjectorWidget.of(). '
+          'This usually happens when the context provided is from the same '
+          'StatefulWidget as that whose build function actually creates '
+          'the InjectorWidget widget being sought.',
+        ),
+        context.describeElement('The context used was'),
+      ],
+    );
   }
 
   final Graph graph;

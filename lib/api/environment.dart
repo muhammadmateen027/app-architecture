@@ -35,11 +35,4 @@ extension EnvironmentExt on Environment {
       testingDomain: 'api.spacexdata.com',
     );
   }
-
-  String get gamesDomain {
-    return _domain(
-      productionDomain: 'api.spacexdata.com',
-      testingDomain: 'api.spacexdata.com',
-    );
-  }
 }
