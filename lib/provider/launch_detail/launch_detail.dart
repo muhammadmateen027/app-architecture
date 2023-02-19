@@ -12,6 +12,7 @@ class LaunchDetail extends LaunchItem {
     required super.name,
     required super.rockedId,
     required super.id,
+    required super.dateTime,
   });
 
   final Link link;

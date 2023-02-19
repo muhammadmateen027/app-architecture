@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:helper_options/helper_options.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'dtos.g.dart';
@@ -31,7 +32,7 @@ class LaunchDto extends Equatable {
     this.ships,
     this.flightNumber,
     this.name,
-    this.dateLocal,
+    this.firedTime,
     this.datePrecision,
     this.id,
   });
@@ -46,8 +47,8 @@ class LaunchDto extends Equatable {
   @JsonKey(name: 'flight_number')
   final int? flightNumber;
   final String? name;
-  @JsonKey(name: 'date_local')
-  final String? dateLocal;
+  @JsonKey(name: 'static_fire_date_utc')
+  final String? firedTime;
   @JsonKey(name: 'date_precision')
   final String? datePrecision;
   final String? id;
@@ -62,10 +63,18 @@ class LaunchDto extends Equatable {
         ships,
         flightNumber,
         name,
-        dateLocal,
+        firedTime,
         datePrecision,
         id,
       ];
+
+  Option<DateTime> getFiresTime(String? firedTime) {
+    if (firedTime == null) {
+      return Option.empty();
+    }
+
+    return Option.of(DateTime.parse(firedTime));
+  }
 }
 
 @immutable

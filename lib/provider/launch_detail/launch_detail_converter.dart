@@ -16,6 +16,7 @@ extension _LaunchDetailX on LaunchDto {
       id: id.liftNull,
       description: details.liftNull,
       flightNumber: flightNumber ?? 0,
+      dateTime: getFiresTime(firedTime),
       link: Link(
         youtube: links!.webcast.liftNull,
         wikipedia: links!.wikipedia.liftNull,

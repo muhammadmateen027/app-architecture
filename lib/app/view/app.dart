@@ -33,6 +33,7 @@ class App extends StatelessWidget {
             ),
             ChangeNotifierProvider<LaunchDetailProvider>(
               create: (_) => LaunchDetailProvider(api),
+              lazy: true,
             ),
           ],
           child: routeWidget,

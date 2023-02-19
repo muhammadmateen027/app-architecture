@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:stars/api/api.dart';
@@ -21,13 +19,11 @@ class ApiImpl implements Api {
 
   @override
   Future<LaunchDto> getLaunch(String id) async {
-    log('------------1------------------');
     final url = '/v4/launches/$id';
 
     final response = await dio.getUri<DioResponseType>(url.toUri);
-    log('------------2------------------');
+
     assertions.assertResponse(response);
-    log('------------3------------------');
     return LaunchDto.fromJson(response.data as ResponseData);
   }
 

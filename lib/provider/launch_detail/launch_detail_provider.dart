@@ -38,6 +38,10 @@ class LaunchDetailProvider extends ChangeNotifier {
       throw const LowPriorityException();
     }
 
-    await launchUrl(uri);
+    try {
+      await launchUrl(uri);
+    } catch (e) {
+      throw const LowPriorityException();
+    }
   }
 }

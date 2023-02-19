@@ -69,7 +69,25 @@ class _LaunchTile extends StatelessWidget {
         errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
       title: Text(launchItem.name),
-      subtitle: Text(launchItem.rockedId),
+      titleTextStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(launchItem.rockedId),
+          if (launchItem.dateTime.isPresent)
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(
+                launchItem.dateTime.value.toString(),
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Colors.blue,
+                    ),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }
