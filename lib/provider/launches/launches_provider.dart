@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:helper_options/helper_options.dart';
 import 'package:stars/api/api.dart';
 import 'package:stars/api/dto/dtos.dart';
 import 'package:stars/provider/extension/string_extension.dart';
@@ -13,6 +12,7 @@ class LaunchesProvider extends ChangeNotifier {
   final Api api;
 
   late List<LaunchItem> launches;
+  final launchConverter = const LaunchItemConverter();
 
   Future<void> init() async {
     launches = [];
@@ -26,10 +26,15 @@ class LaunchesProvider extends ChangeNotifier {
     await _getLaunchesList();
   }
 
+  Future<void> setFavourite(String id) async {
+    launches = launchConverter.setFavourite(launches, id);
+    notifyListeners();
+  }
+
   Future<void> _getLaunchesList() async {
     try {
       final launchesDto = await api.launches();
-      launches = const LaunchItemConverter().convert(launchesDto.launches);
+      launches = launchConverter.convert(launchesDto.launches);
       notifyListeners();
     } on Exception {
       notifyListeners();

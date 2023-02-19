@@ -59,6 +59,9 @@ class _LaunchTile extends StatelessWidget {
   final LaunchItem launchItem;
   final VoidCallback? onTap;
 
+  IconData get buildIcon =>
+      launchItem.isFavourite ? Icons.favorite : Icons.favorite_border;
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -68,6 +71,7 @@ class _LaunchTile extends StatelessWidget {
         placeholder: (context, url) => const CircularProgressIndicator(),
         errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
+      trailing: Icon(buildIcon),
       title: Text(launchItem.name),
       titleTextStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
             fontWeight: FontWeight.bold,

@@ -18,6 +18,23 @@ class LaunchItemConverter {
         }
       });
   }
+
+  List<LaunchItem> setFavourite(List<LaunchItem> launches, String id) {
+    return [
+      for (final item in launches)
+        if (item.id == id)
+          LaunchItem(
+            image: item.image,
+            name: item.name,
+            rockedId: item.rockedId,
+            id: item.id,
+            dateTime: item.dateTime,
+            isFavourite: !item.isFavourite,
+          )
+        else
+          item,
+    ];
+  }
 }
 
 extension _LaunchItemX on LaunchDto {

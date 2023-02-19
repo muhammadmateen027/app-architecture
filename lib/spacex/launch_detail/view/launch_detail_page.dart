@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:stars/l10n/l10n.dart';
 import 'package:stars/provider/launch_detail/launch_detail.dart';
 import 'package:stars/provider/launch_detail/launch_detail_provider.dart';
+import 'package:stars/provider/launches/launches_provider.dart';
 
 class LaunchDetailPage extends StatelessWidget {
   const LaunchDetailPage({super.key});
@@ -11,7 +12,9 @@ class LaunchDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.launchDetailAppBarTitle)),
+      appBar: AppBar(
+        title: Text(context.l10n.launchDetailAppBarTitle),
+      ),
       body: Consumer<LaunchDetailProvider>(
         builder: (_, provider, widget) {
           if (!provider.launchDetail.isPresent) {
@@ -34,7 +37,7 @@ class _LaunchDetailContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<LaunchDetailProvider>(context, listen: false);
+    final provider = Provider.of<LaunchDetailProvider>(context);
 
     return SingleChildScrollView(
       child: Padding(
@@ -92,7 +95,17 @@ class _LaunchDetailContent extends StatelessWidget {
                   icon: const Icon(Icons.article),
                 ),
               ],
-            )
+            ),
+            const SizedBox(height: 20),
+            Center(
+              child: IconButton(
+                onPressed: () {
+                  Provider.of<LaunchesProvider>(context, listen: false)
+                      .setFavourite(launchDetail.id);
+                },
+                icon: const Icon(Icons.favorite_border),
+              ),
+            ),
           ],
         ),
       ),
