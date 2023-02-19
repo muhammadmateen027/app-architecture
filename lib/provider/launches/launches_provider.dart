@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:stars/api/api.dart';
 import 'package:stars/api/dto/dtos.dart';
@@ -23,18 +21,23 @@ class LaunchesProvider extends ChangeNotifier {
   }
 
   Future<void> init() async {
-    _isLoading = true;
     notifyListeners();
-    await getListWork();
+    await _getLaunchesList();
   }
 
-  Future<void> getListWork() async {
+  Future<void> refreshLaunches() async {
+    launches.clear();
+    notifyListeners();
+    await _getLaunchesList();
+  }
+
+  Future<void> _getLaunchesList() async {
+    _isLoading = true;
     try {
       final launchesDto = await api.launches();
       launches = const LaunchItemConverter().convert(launchesDto.launches);
       _notify();
-    } on Exception catch (e) {
-      log(e.toString());
+    } on Exception {
       _notify();
     }
   }

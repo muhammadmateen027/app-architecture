@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stars/l10n/l10n.dart';
+import 'package:stars/provider/launch_detail/launch_detail_provider.dart';
 import 'package:stars/provider/launches/launch_item.dart';
 import 'package:stars/provider/launches/launches_provider.dart';
 
@@ -13,7 +15,18 @@ class LaunchesListPage extends StatelessWidget {
     final l10n = context.l10n;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
+      appBar: AppBar(
+        title: Text(l10n.counterAppBarTitle),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Provider.of<LaunchesProvider>(context, listen: false)
+                  .refreshLaunches();
+            },
+            icon: const Icon(Icons.refresh),
+          )
+        ],
+      ),
       body: Consumer<LaunchesProvider>(
         builder: (context, provider, widget) {
           if (provider.hasEmptyLaunches) {
@@ -25,7 +38,11 @@ class LaunchesListPage extends StatelessWidget {
             separatorBuilder: (_, index) => const Divider(),
             itemBuilder: (_, index) {
               return _LaunchTile(
-                onTap: () {},
+                onTap: () {
+                  Provider.of<LaunchDetailProvider>(context, listen: false)
+                      .getLaunch(provider.launches[index].id);
+                  AutoRouter.of(context).pushNamed('/launch-detail-page');
+                },
                 launchItem: provider.launches[index],
               );
             },
@@ -64,7 +81,18 @@ class CounterView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
+      appBar: AppBar(
+        title: Text(l10n.counterAppBarTitle),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Provider.of<LaunchesProvider>(context, listen: false)
+                  .refreshLaunches();
+            },
+            icon: const Icon(Icons.refresh),
+          )
+        ],
+      ),
       body: const Center(child: CounterText()),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -72,8 +100,7 @@ class CounterView extends StatelessWidget {
         children: [
           FloatingActionButton(
             onPressed: () {
-              Provider.of<LaunchesProvider>(context, listen: false)
-                  .getListWork();
+              Provider.of<LaunchesProvider>(context, listen: false).init();
             },
             child: const Icon(Icons.add),
           ),
