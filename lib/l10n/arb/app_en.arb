@@ -1,7 +1,11 @@
 {
     "@@locale": "en",
-    "counterAppBarTitle": "Launches",
-    "@counterAppBarTitle": {
+    "launchesAppBarTitle": "Launches",
+    "@launchesAppBarTitle": {
+        "description": "Text shown in the AppBar of the Launches Page"
+    },
+    "launchDetailAppBarTitle": "Launch detail",
+    "@launchDetailAppBarTitle": {
         "description": "Text shown in the AppBar of the Launches Page"
     }
 }

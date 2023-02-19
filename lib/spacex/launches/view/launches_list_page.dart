@@ -16,7 +16,7 @@ class LaunchesListPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.counterAppBarTitle),
+        title: Text(l10n.launchesAppBarTitle),
         actions: [
           IconButton(
             onPressed: () {
@@ -71,56 +71,5 @@ class _LaunchTile extends StatelessWidget {
       title: Text(launchItem.name),
       subtitle: Text(launchItem.rockedId),
     );
-  }
-}
-
-class CounterView extends StatelessWidget {
-  const CounterView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.counterAppBarTitle),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Provider.of<LaunchesProvider>(context, listen: false)
-                  .refreshLaunches();
-            },
-            icon: const Icon(Icons.refresh),
-          )
-        ],
-      ),
-      body: const Center(child: CounterText()),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: () {
-              Provider.of<LaunchesProvider>(context, listen: false).init();
-            },
-            child: const Icon(Icons.add),
-          ),
-          const SizedBox(height: 8),
-          FloatingActionButton(
-            onPressed: () {},
-            child: const Icon(Icons.remove),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class CounterText extends StatelessWidget {
-  const CounterText({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Text('0', style: theme.textTheme.displayLarge);
   }
 }

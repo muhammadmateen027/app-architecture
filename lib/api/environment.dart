@@ -3,9 +3,6 @@ enum Environment {
   production,
   testing;
 
-  bool get isProductionEnv =>
-      _domain(productionDomain: 'p', testingDomain: 't') == 'p';
-
   String _domain({
     required String productionDomain,
     required String testingDomain,

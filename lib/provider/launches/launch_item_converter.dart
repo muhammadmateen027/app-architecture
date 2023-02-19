@@ -5,18 +5,17 @@ class LaunchItemConverter {
   const LaunchItemConverter();
 
   List<LaunchItem> convert(List<LaunchDto> launchDtos) {
-    return launchDtos.map((launchDto) => launchDto.toLaunchItem()).toList();
+    return launchDtos.map((launchDto) => launchDto._toLaunchItem()).toList();
   }
 }
 
-extension LaunchItemX on LaunchDto {
-  LaunchItem toLaunchItem() {
+extension _LaunchItemX on LaunchDto {
+  LaunchItem _toLaunchItem() {
     return LaunchItem(
       image: _buildImage(links!.patch),
-      name: name ?? '',
-      description: details ?? '',
-      rockedId: rocket ?? '',
-      id: id ?? '',
+      name: name.liftNull,
+      rockedId: rocket.liftNull,
+      id: id.liftNull,
     );
   }
 

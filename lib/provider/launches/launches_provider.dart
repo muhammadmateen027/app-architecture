@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:stars/api/api.dart';
 import 'package:stars/api/dto/dtos.dart';
+import 'package:stars/provider/extension/string_extension.dart';
 import 'package:stars/provider/launches/launch_item.dart';
 
 part 'launch_item_converter.dart';
@@ -10,17 +11,10 @@ class LaunchesProvider extends ChangeNotifier {
 
   final Api api;
 
-  List<LaunchItem> launches = [];
-  bool _isLoading = false;
-
-  bool get isLoading => _isLoading;
-
-  set isLoading(bool val) {
-    _isLoading = val;
-    notifyListeners();
-  }
+  late List<LaunchItem> launches;
 
   Future<void> init() async {
+    launches = [];
     notifyListeners();
     await _getLaunchesList();
   }
@@ -32,19 +26,13 @@ class LaunchesProvider extends ChangeNotifier {
   }
 
   Future<void> _getLaunchesList() async {
-    _isLoading = true;
     try {
       final launchesDto = await api.launches();
       launches = const LaunchItemConverter().convert(launchesDto.launches);
-      _notify();
+      notifyListeners();
     } on Exception {
-      _notify();
+      notifyListeners();
     }
-  }
-
-  void _notify() {
-    _isLoading = false;
-    notifyListeners();
   }
 }
 
