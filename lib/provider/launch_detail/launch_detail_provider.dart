@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:stars/api/api.dart';
 import 'package:stars/api/dto/dtos.dart';
@@ -21,6 +23,7 @@ class LaunchDetailProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
     try {
+      log('----------------------------');
       launchDetail = await api.getLaunch(id);
       _notify();
     } on Exception {

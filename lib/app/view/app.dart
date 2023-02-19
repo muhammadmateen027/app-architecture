@@ -7,14 +7,13 @@ import 'package:stars/provider/launch_detail/launch_detail_provider.dart';
 import 'package:stars/provider/launches/launches_provider.dart';
 
 class App extends StatelessWidget {
-  const App({required this.api, super.key});
+  const App({required this.api, required this.appRouter, super.key});
 
   final Api api;
+  final AppRouter appRouter;
 
   @override
   Widget build(BuildContext context) {
-    final appRouter = AppRouter();
-
     return MaterialApp.router(
       theme: ThemeData(
         appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
