@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stars/api/api.dart';
-import 'package:stars/counter/counter.dart';
 import 'package:stars/l10n/l10n.dart';
+import 'package:stars/launches/launches.dart';
 import 'package:stars/provider/launch_detail/launch_detail_provider.dart';
 import 'package:stars/provider/launches/launches_provider.dart';
 
@@ -16,7 +16,7 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<LaunchesProvider>(
-          create: (_) => LaunchesProvider(api),
+          create: (_) => LaunchesProvider(api)..init(),
         ),
         ChangeNotifierProvider<LaunchDetailProvider>(
           create: (_) => LaunchDetailProvider(api),
@@ -31,7 +31,7 @@ class App extends StatelessWidget {
         ),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        home: const CounterPage(),
+        home: const LaunchesListPage(),
       ),
     );
   }

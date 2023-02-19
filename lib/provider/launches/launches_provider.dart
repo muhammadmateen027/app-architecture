@@ -3,15 +3,16 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:stars/api/api.dart';
 import 'package:stars/api/dto/dtos.dart';
+import 'package:stars/provider/launches/launch_item.dart';
+
+part 'launch_item_converter.dart';
 
 class LaunchesProvider extends ChangeNotifier {
-  LaunchesProvider(this.api) {
-    init();
-  }
+  LaunchesProvider(this.api);
 
   final Api api;
 
-  LaunchesList? launches;
+  List<LaunchItem> launches = [];
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
@@ -28,10 +29,9 @@ class LaunchesProvider extends ChangeNotifier {
   }
 
   Future<void> getListWork() async {
-    log('------------------------');
     try {
-      launches = await api.launches();
-      log(launches!.launches[1].details.toString());
+      final launchesDto = await api.launches();
+      launches = const LaunchItemConverter().convert(launchesDto.launches);
       _notify();
     } on Exception catch (e) {
       log(e.toString());
@@ -46,14 +46,5 @@ class LaunchesProvider extends ChangeNotifier {
 }
 
 extension LaunchesProviderStatus on LaunchesProvider {
-  bool get hasEmptyLaunches => launches == null;
-
-  List<LaunchDto> get launchList {
-    const launches = <LaunchDto>[];
-    if (!hasEmptyLaunches) {
-      return this.launches!.launches;
-    }
-
-    return launches;
-  }
+  bool get hasEmptyLaunches => launches.isEmpty;
 }

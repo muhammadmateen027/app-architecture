@@ -1,14 +1,12 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:stars/api/dto/dtos.dart';
 import 'package:stars/l10n/l10n.dart';
+import 'package:stars/provider/launches/launch_item.dart';
 import 'package:stars/provider/launches/launches_provider.dart';
 
-class CounterPage extends StatelessWidget {
-  const CounterPage({super.key});
+class LaunchesListPage extends StatelessWidget {
+  const LaunchesListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +21,12 @@ class CounterPage extends StatelessWidget {
           }
 
           return ListView.separated(
-            itemCount: provider.launchList.length,
+            itemCount: provider.launches.length,
             separatorBuilder: (_, index) => const Divider(),
             itemBuilder: (_, index) {
               return _LaunchTile(
                 onTap: () {},
-                launchDto: provider.launchList[index],
+                launchItem: provider.launches[index],
               );
             },
           );
@@ -39,9 +37,9 @@ class CounterPage extends StatelessWidget {
 }
 
 class _LaunchTile extends StatelessWidget {
-  const _LaunchTile({required this.launchDto, this.onTap, super.key});
+  const _LaunchTile({required this.launchItem, this.onTap, super.key});
 
-  final LaunchDto launchDto;
+  final LaunchItem launchItem;
   final VoidCallback? onTap;
 
   @override
@@ -49,12 +47,12 @@ class _LaunchTile extends StatelessWidget {
     return ListTile(
       onTap: onTap,
       leading: CachedNetworkImage(
-        imageUrl: launchDto.links!.patch!.small!,
+        imageUrl: launchItem.image,
         placeholder: (context, url) => const CircularProgressIndicator(),
         errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
-      title: Text(launchDto.name ?? ''),
-      subtitle: Text(launchDto.rocket ?? ''),
+      title: Text(launchItem.name),
+      subtitle: Text(launchItem.rockedId),
     );
   }
 }
@@ -64,7 +62,6 @@ class CounterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final myProvider1 = Provider.of<LaunchesProvider>(context);
     final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(title: Text(l10n.counterAppBarTitle)),

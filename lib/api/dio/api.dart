@@ -1,12 +1,8 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
 import 'package:stars/api/api.dart';
 import 'package:stars/api/api_assertion.dart';
 import 'package:stars/api/dto/dtos.dart';
-import 'package:stars/api/environment.dart';
 
 typedef DioResponseType = dynamic;
 typedef ResponseData = Map<String, dynamic>;
@@ -20,7 +16,6 @@ class ApiImpl implements Api {
 
   final Dio dio;
   final ApiAssertions assertions;
-
 
   @override
   Future<LaunchDto> getLaunch(String id) async {
@@ -38,10 +33,13 @@ class ApiImpl implements Api {
     const url = '/v4/launches';
     final response = await dio.getUri<DioResponseType>(url.toUri);
 
-    // assertions.assertResponse(response);
-
-    return LaunchesList.fromJson(response.data as List<dynamic>);
+    assertions.assertResponse(response);
+    return compute(_buildLaunchList, response.data as List<dynamic>);
   }
+}
+
+LaunchesList _buildLaunchList(List<dynamic> jsonData) {
+  return LaunchesList.fromJson(jsonData);
 }
 
 extension URL on String {
