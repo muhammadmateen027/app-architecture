@@ -4,6 +4,23 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'dtos.g.dart';
 
+class LaunchesList {
+  LaunchesList({
+    required this.launches,
+  });
+
+  factory LaunchesList.fromJson(List<dynamic> parsedJson) {
+    var launches = <LaunchDto>[];
+    launches = parsedJson
+        .map((i) => LaunchDto.fromJson(i as Map<String, dynamic>))
+        .toList();
+
+    return LaunchesList(launches: launches);
+  }
+
+  final List<LaunchDto> launches;
+}
+
 @immutable
 @JsonSerializable()
 class LaunchDto extends Equatable {

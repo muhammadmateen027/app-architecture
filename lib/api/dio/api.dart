@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'dart:developer';
 
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:stars/api/api.dart';
@@ -14,24 +14,19 @@ typedef ResponseData = Map<String, dynamic>;
 @immutable
 class ApiImpl implements Api {
   const ApiImpl(
-    this.dio,
-    this.environment,
-    this.connectivity, [
+    this.dio, [
     this.assertions = const ApiAssertions(),
   ]);
 
   final Dio dio;
-  final Environment environment;
-  final Connectivity connectivity;
   final ApiAssertions assertions;
 
-  String get _hostname => 'https://${environment.domain}';
 
   @override
   Future<LaunchDto> getLaunch(String id) async {
-    final url = '$_hostname/v4/launches/$id';
+    final url = '/v4/launches/$id';
 
-    final response = await dio.getUri<DioResponseType>(Uri.parse(url));
+    final response = await dio.getUri<DioResponseType>(url.toUri);
 
     assertions.assertResponse(response);
 
@@ -39,18 +34,16 @@ class ApiImpl implements Api {
   }
 
   @override
-  Future<List<LaunchDto>> launches() async {
-    final url = '$_hostname/v4/launches';
+  Future<LaunchesList> launches() async {
+    const url = '/v4/launches';
+    final response = await dio.getUri<DioResponseType>(url.toUri);
 
-    final response = await dio.getUri<DioResponseType>(Uri.parse(url));
+    // assertions.assertResponse(response);
 
-    assertions.assertResponse(response);
-    final iterable = json.decode(response.data as String) as List;
-
-    return List<LaunchDto>.from(
-      iterable.map(
-        (model) => LaunchDto.fromJson(model as ResponseData),
-      ),
-    );
+    return LaunchesList.fromJson(response.data as List<dynamic>);
   }
+}
+
+extension URL on String {
+  Uri get toUri => Uri.parse(this);
 }
