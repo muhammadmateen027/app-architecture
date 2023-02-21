@@ -20,4 +20,8 @@ abstract class Graph implements Built<Graph, GraphBuilder>, Disposable {
   Environment get environment;
 
   double get timeDilation;
+
+  @override
+  void dispose() {
+  }
 }

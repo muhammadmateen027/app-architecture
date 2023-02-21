@@ -10,8 +10,6 @@ class _$Graph extends Graph {
   @override
   final Map<String, dynamic> arguments;
   @override
-  final Dio externalDio;
-  @override
   final Dio internalDio;
   @override
   final Api api;
@@ -25,14 +23,12 @@ class _$Graph extends Graph {
 
   _$Graph._(
       {required this.arguments,
-      required this.externalDio,
       required this.internalDio,
       required this.api,
       required this.environment,
       required this.timeDilation})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(arguments, r'Graph', 'arguments');
-    BuiltValueNullFieldError.checkNotNull(externalDio, r'Graph', 'externalDio');
     BuiltValueNullFieldError.checkNotNull(internalDio, r'Graph', 'internalDio');
     BuiltValueNullFieldError.checkNotNull(api, r'Graph', 'api');
     BuiltValueNullFieldError.checkNotNull(environment, r'Graph', 'environment');
@@ -52,7 +48,6 @@ class _$Graph extends Graph {
     if (identical(other, this)) return true;
     return other is Graph &&
         arguments == other.arguments &&
-        externalDio == other.externalDio &&
         internalDio == other.internalDio &&
         api == other.api &&
         environment == other.environment &&
@@ -63,7 +58,6 @@ class _$Graph extends Graph {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, arguments.hashCode);
-    _$hash = $jc(_$hash, externalDio.hashCode);
     _$hash = $jc(_$hash, internalDio.hashCode);
     _$hash = $jc(_$hash, api.hashCode);
     _$hash = $jc(_$hash, environment.hashCode);
@@ -76,7 +70,6 @@ class _$Graph extends Graph {
   String toString() {
     return (newBuiltValueToStringHelper(r'Graph')
           ..add('arguments', arguments)
-          ..add('externalDio', externalDio)
           ..add('internalDio', internalDio)
           ..add('api', api)
           ..add('environment', environment)
@@ -92,10 +85,6 @@ class GraphBuilder implements Builder<Graph, GraphBuilder> {
   Map<String, dynamic>? get arguments => _$this._arguments;
   set arguments(Map<String, dynamic>? arguments) =>
       _$this._arguments = arguments;
-
-  Dio? _externalDio;
-  Dio? get externalDio => _$this._externalDio;
-  set externalDio(Dio? externalDio) => _$this._externalDio = externalDio;
 
   Dio? _internalDio;
   Dio? get internalDio => _$this._internalDio;
@@ -120,7 +109,6 @@ class GraphBuilder implements Builder<Graph, GraphBuilder> {
     final $v = _$v;
     if ($v != null) {
       _arguments = $v.arguments;
-      _externalDio = $v.externalDio;
       _internalDio = $v.internalDio;
       _api = $v.api;
       _environment = $v.environment;
@@ -149,8 +137,6 @@ class GraphBuilder implements Builder<Graph, GraphBuilder> {
         new _$Graph._(
             arguments: BuiltValueNullFieldError.checkNotNull(
                 arguments, r'Graph', 'arguments'),
-            externalDio: BuiltValueNullFieldError.checkNotNull(
-                externalDio, r'Graph', 'externalDio'),
             internalDio: BuiltValueNullFieldError.checkNotNull(
                 internalDio, r'Graph', 'internalDio'),
             api: BuiltValueNullFieldError.checkNotNull(api, r'Graph', 'api'),

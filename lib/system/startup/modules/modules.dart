@@ -29,7 +29,7 @@ class ApiModule extends Module<Api> {
   @override
   Future<ApiImpl> doInitialize(GraphBuilder builder) async {
     return ApiImpl(
-      builder.externalDio.liftNonNull,
+      builder.internalDio.liftNonNull,
       builder.environment.liftNonNull,
     );
   }

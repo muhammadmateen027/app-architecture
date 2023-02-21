@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:helper_options/helper_options.dart';
 import 'package:stars/exception/null_lift.dart';
 
@@ -52,4 +54,8 @@ extension LiftGenericExtensions<T extends Object> on T? {
 
 extension ListExtension<T> on List<T> {
   bool hasExact(final int value) => length == value;
+}
+
+extension BuildContextX on BuildContext {
+  StackRouter toRoute() => AutoRouter.of(this);
 }
