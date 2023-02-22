@@ -1,15 +1,39 @@
+import 'dart:convert';
+
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:helper_options/helper_options.dart';
 import 'package:stars/exception/null_lift.dart';
 
-extension Extension on String? {
+extension EmptyStringExtension on String? {
   bool get isNotNullOrEmpty => this != null && this!.isNotEmpty;
 
   String get valueOrEmpty => this ?? '';
 
   Option<String> get optionOrNone =>
       isNotNullOrEmpty ? Option.of(this) : const None();
+}
+
+extension StringExtension on String {
+  bool get isValidName => !contains(RegExp('[0–9]'));
+
+  String get capitaliseFirstChar =>
+      isEmpty ? this : this[0].toUpperCase() + substring(0, length);
+
+  String get capitaliseEachWordFirstChar => isEmpty
+      ? this
+      : replaceAll(RegExp(' +'), ' ')
+          .split(' ')
+          .map((str) => str.capitaliseFirstChar)
+          .join(' ');
+
+  double get parseDouble => double.parse(this);
+
+  int get parseInt => int.parse(this);
+
+  bool get isUrl => contains('https://') || contains('http://');
+
+  Uri get toUri => Uri.parse(this);
 }
 
 extension OptionExtension on Option<String> {
@@ -56,6 +80,32 @@ extension ListExtension<T> on List<T> {
   bool hasExact(final int value) => length == value;
 }
 
-extension BuildContextX on BuildContext {
-  StackRouter toRoute() => AutoRouter.of(this);
+extension JsonConverterExtension on dynamic {
+  String get stringify => jsonEncode(this);
+}
+
+extension BuildContextExtension on BuildContext {
+  StackRouter get toRoute => AutoRouter.of(this);
+
+  ThemeData get theme => Theme.of(this);
+
+  ColorScheme get colorScheme => theme.colorScheme;
+
+  TextTheme get textTheme => theme.textTheme;
+
+  ButtonThemeData get buttonTheme => theme.buttonTheme;
+
+  MediaQueryData get mediaQuery => MediaQuery.of(this);
+
+  Size get size => mediaQuery.size;
+
+  double get screenHeight => size.height;
+
+  double get screenWidth => size.width;
+
+  bool get isMobile => screenWidth < 650;
+
+  bool get isTablet => screenWidth < 1024 && screenWidth >= 650;
+
+  bool get isDesktop => screenWidth >= 1024;
 }
