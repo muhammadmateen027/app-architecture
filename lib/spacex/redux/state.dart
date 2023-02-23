@@ -25,6 +25,8 @@ class SpaceXLaunchesState {
   }
 
   SpaceXLaunchesState refreshState() {
-    return SpaceXLaunchesState.initialState();
+    return copyWith(
+        launchesState: const DataState.loading(),
+    );
   }
 }

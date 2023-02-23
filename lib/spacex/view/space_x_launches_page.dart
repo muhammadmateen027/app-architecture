@@ -27,10 +27,12 @@ class SpaceXLaunches extends StatelessWidget {
               ),
             ],
           ),
-          body: LaunchesContent(
-            launches: viewModel.launches,
-            onLaunchTapped: viewModel.onLaunchTapped,
-          ),
+          body: viewModel.dataState.isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : LaunchesContent(
+                  launches: viewModel.launches,
+                  onLaunchTapped: viewModel.onLaunchTapped,
+                ),
         );
       },
     );
@@ -62,5 +64,5 @@ class _ViewModel extends Equatable {
   void onRefreshTapped() => onDispatch(const RefreshLaunchesAction());
 
   @override
-  List<Object?> get props => [launches, dataState];
+  List<Object> get props => [launches, dataState];
 }
