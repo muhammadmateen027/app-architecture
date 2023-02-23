@@ -1,11 +1,12 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
 import 'package:stars/api/api.dart';
+import 'package:stars/api/dto/dtos.dart';
 import 'package:stars/api/environment.dart';
 import 'package:stars/api_assertion.dart';
 
 typedef DioResponseType = dynamic;
+typedef ResponseData = Map<String, dynamic>;
 
 @immutable
 class ApiImpl implements Api {
@@ -16,36 +17,35 @@ class ApiImpl implements Api {
   ]);
 
   final Dio dio;
-  final Environment environment;
   final ApiAssertions assertions;
+  final Environment environment;
 
   String get _hostname => 'https://${environment.domain}';
 
-  String get _versionOne => 'v4';
-
   @override
-  Future<void> getLaunch(String id) async {
-    final url = '$_hostname/$_versionOne/launches/$id';
+  Future<LaunchDto> getLaunch(String id) async {
+    final url = '$_hostname/v4/launches/$id';
 
-    final response = await dio.getUri<DioResponseType>(Uri.parse(url));
+    final response = await dio.getUri<DioResponseType>(url.toUri);
 
     assertions.assertResponse(response);
-
-    // TODO: return dto
-    // return UserStatusResponseDto.fromJson(response.data!);
+    return LaunchDto.fromJson(response.data as ResponseData);
   }
 
   @override
-  Future<void> launches() async {
-    // await assertions.assertOnline(connectivity);
-
-    final url = '$_hostname/$_versionOne/launches';
-
-    final response = await dio.getUri<DioResponseType>(Uri.parse(url));
+  Future<LaunchesList> launches() async {
+    final url = '$_hostname/v4/launches';
+    final response = await dio.getUri<DioResponseType>(url.toUri);
 
     assertions.assertResponse(response);
-
-    // TODO: return dto
-    // return UserStatusResponseDto.fromJson(response.data!);
+    return compute(_buildLaunchList, response.data as List<dynamic>);
   }
+}
+
+LaunchesList _buildLaunchList(List<dynamic> jsonData) {
+  return LaunchesList.fromJson(jsonData);
+}
+
+extension URL on String {
+  Uri get toUri => Uri.parse(this);
 }

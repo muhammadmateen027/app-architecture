@@ -6,12 +6,15 @@ import 'package:redux_epics/redux_epics.dart';
 import 'package:stars/redux/app_state.dart';
 import 'package:stars/redux/epics.dart';
 import 'package:stars/redux/reducer.dart';
+import 'package:stars/spacex/redux/reducer.dart';
 import 'package:stars/system/startup/graph.dart';
+import 'package:stars/system/startup/initial_actions.dart';
 import 'package:stars/system/startup/state.dart';
 
 AppState appReducer(final AppState state, final dynamic action) {
-  return const AppState(
-    startupState: StartupState.initialState(),
+  return AppState(
+    startupState: const StartupState.initialState(),
+    spaceXLaunchesState: spaceXReducer(state.spaceXLaunchesState, action),
   );
 }
 
@@ -43,5 +46,7 @@ class StarXStore {
 
   final Graph graph;
 
-  Future<void> dispatchInitial() async {}
+  Future<void> dispatchInitial() async {
+    initialActions.forEach(store.dispatch);
+  }
 }

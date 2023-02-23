@@ -42,7 +42,11 @@ class InternalRestModule extends Module<Dio> {
   Future<Dio> doInitialize(
     final GraphBuilder builder,
   ) async {
-    return Dio(BaseOptions(validateStatus: (final _) => true))
+    return Dio(
+      BaseOptions(
+        validateStatus: (final _) => true,
+      ),
+    )
       ..transformer = DioTransformer()
       ..interceptors.add(LogInterceptor())
       ..interceptors.add(

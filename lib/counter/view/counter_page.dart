@@ -39,7 +39,7 @@ class CounterView extends StatelessWidget {
 }
 
 class _CounterText extends StatelessWidget {
-  const _CounterText({super.key});
+  const _CounterText();
 
   @override
   Widget build(BuildContext context) {

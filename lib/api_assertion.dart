@@ -3,9 +3,6 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 
-//TODO: check connectivity with extension
-import 'package:stars/api/network_exceptions.dart';
-
 class ApiAssertions {
   const ApiAssertions();
 

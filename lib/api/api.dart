@@ -1,5 +1,6 @@
+import 'package:stars/api/dto/dtos.dart';
 
 abstract class Api {
-  Future<void> launches();
-  Future<void> getLaunch(String id);
+  Future<LaunchesList> launches();
+  Future<LaunchDto> getLaunch(String id);
 }

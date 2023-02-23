@@ -16,7 +16,7 @@ LaunchDto _$LaunchDtoFromJson(Map<String, dynamic> json) => LaunchDto(
           (json['ships'] as List<dynamic>?)?.map((e) => e as String).toList(),
       flightNumber: json['flight_number'] as int?,
       name: json['name'] as String?,
-      dateLocal: json['date_local'] as String?,
+      firedTime: json['static_fire_date_utc'] as String?,
       datePrecision: json['date_precision'] as String?,
       id: json['id'] as String?,
     );
@@ -28,7 +28,7 @@ Map<String, dynamic> _$LaunchDtoToJson(LaunchDto instance) => <String, dynamic>{
       'ships': instance.ships,
       'flight_number': instance.flightNumber,
       'name': instance.name,
-      'date_local': instance.dateLocal,
+      'static_fire_date_utc': instance.firedTime,
       'date_precision': instance.datePrecision,
       'id': instance.id,
     };
