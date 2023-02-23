@@ -23,4 +23,8 @@ class SpaceXLaunchesState {
       launchesState: launchesState ?? this.launchesState,
     );
   }
+
+  SpaceXLaunchesState refreshState() {
+    return SpaceXLaunchesState.initialState();
+  }
 }

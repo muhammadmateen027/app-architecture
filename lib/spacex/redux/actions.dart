@@ -8,6 +8,13 @@ class FetchLaunchesAction extends Action {
   String toString() => 'FetchLaunchesAction';
 }
 
+class RefreshLaunchesAction extends Action {
+  const RefreshLaunchesAction();
+
+  @override
+  String toString() => 'FetchLaunchesAction';
+}
+
 class FetchLaunchesSucceededAction extends Action {
   const FetchLaunchesSucceededAction(this.launches);
 

@@ -15,6 +15,8 @@ SpaceXLaunchesState spaceXReducer(
     return state.copyWith(
       launchesState: DataState.error(action.exception),
     );
+  } else if (action is RefreshLaunchesAction) {
+    return state.refreshState();
   }
 
   return state;

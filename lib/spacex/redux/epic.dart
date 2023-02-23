@@ -10,14 +10,18 @@ import 'package:stars/system/startup/graph.dart';
 Epic<AppState> _fetchLaunchesEpic(final Graph graph) =>
     (final Stream<dynamic> actions, final EpicStore<AppState> store) {
       return actions.whereType<FetchLaunchesAction>().flatMap(
-            (final action) => _fetchLaunches(action, graph.api),
+            (final action) => _fetchLaunches(graph.api),
           );
     };
 
-Stream<Action> _fetchLaunches(
-  final FetchLaunchesAction action,
-  final Api api,
-) async* {
+Epic<AppState> _refreshLaunchesEpic(final Graph graph) =>
+    (final Stream<dynamic> actions, final EpicStore<AppState> store) {
+      return actions.whereType<RefreshLaunchesAction>().flatMap(
+            (final action) => _fetchLaunches(graph.api),
+          );
+    };
+
+Stream<Action> _fetchLaunches(final Api api) async* {
   try {
     final launchesDto = await api.launches();
     final launches = const LaunchItemConverter().convert(launchesDto.launches);
@@ -31,4 +35,5 @@ Stream<Action> _fetchLaunches(
 
 Epic<AppState> launchesListEpics(final Graph graph) => combineEpics<AppState>([
       _fetchLaunchesEpic(graph),
+      _refreshLaunchesEpic(graph),
     ]);
