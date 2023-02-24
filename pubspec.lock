@@ -253,10 +253,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio
-      sha256: "9fdbf71baeb250fc9da847f6cb2052196f62c19906a3657adfc18631a667d316"
+      sha256: "3709d74615bba5e443eb141f6a7f4bcc4788f8fae6f743edadfb79c2a8e6287e"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.0"
+    version: "5.0.1"
   equatable:
     dependency: "direct main"
     description:
@@ -369,10 +369,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "6dd6b05db749756996b727521b9b9b4ee0968ea4aeb59af2e59383683d6ef34f"
+      sha256: b4bb06205ec607278b6fc23db238278417bca84a3905779cc68d1eb7afae37e2
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.7"
+    version: "6.2.0"
   graphs:
     dependency: transitive
     description:
@@ -385,10 +385,10 @@ packages:
     dependency: "direct main"
     description:
       name: helper_options
-      sha256: bca28e091c6144f46fa0ba00ed211fcf4fda83cb6233801d32645f6e9f9b55df
+      sha256: b6ec98f34d74713d1325b7eb112afa4c0b38dbb593af4a50d3f057fb9211b441
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.0+2"
+    version: "0.1.0+3"
   http:
     dependency: transitive
     description:
@@ -886,10 +886,10 @@ packages:
     dependency: "direct dev"
     description:
       name: very_good_analysis
-      sha256: b3c9f971c21c4f7638975fe0addda17b95fb4e64cd987d7d06adc35b6e1be488
+      sha256: ebc48c51db35beeeec8c414e32f7bd78e612bd7f5992ccb0d46e19edaeb40b08
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.0"
+    version: "4.0.0+1"
   vm_service:
     dependency: transitive
     description:
