@@ -101,9 +101,9 @@ class MainViewModel extends Equatable {
       onDispatch(StateChangedAction(position));
 
   String applicationTitleSuffix() =>
-      environmentLabel().isNotEmpty ? ' - ${environmentLabel()}' : '';
+      environmentLabel.isNotEmpty ? ' - $environmentLabel' : '';
 
-  String environmentLabel() {
+  String get environmentLabel {
     switch (environment) {
       case Environment.staging:
         return 'staging';

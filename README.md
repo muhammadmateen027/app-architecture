@@ -4,6 +4,8 @@ A flutter app to invest time to setup architecture basement
 
 ---
 
+![High level diagram](./images/Redux-epic-architecture-High-level-diagram.png)
+
 ## Getting Started 🚀
 
 This project contains 3 flavors:
