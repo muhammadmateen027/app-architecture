@@ -1,5 +1,5 @@
 import 'package:meta/meta.dart';
-import 'package:stars/data_state.dart';
+import 'package:stars/redux/data_state.dart';
 
 @immutable
 class StartupState {

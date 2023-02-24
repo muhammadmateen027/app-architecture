@@ -7,6 +7,7 @@ import 'package:stars/api/environment.dart';
 
 typedef DioResponseType = dynamic;
 typedef ResponseData = Map<String, dynamic>;
+typedef ListResponseData = List<dynamic>;
 
 @immutable
 class ApiImpl implements Api {
@@ -38,7 +39,7 @@ class ApiImpl implements Api {
     final response = await dio.getUri<DioResponseType>(url.toUri);
 
     assertions.assertResponse(response);
-    return compute(_buildLaunchList, response.data as List<dynamic>);
+    return compute(_buildLaunchList, response.data as ListResponseData);
   }
 }
 
