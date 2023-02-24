@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:stars/api/api.dart';
+import 'package:stars/api/api_assertion.dart';
 import 'package:stars/api/dto/dtos.dart';
 import 'package:stars/api/environment.dart';
-import 'package:stars/api_assertion.dart';
 
 typedef DioResponseType = dynamic;
 typedef ResponseData = Map<String, dynamic>;
