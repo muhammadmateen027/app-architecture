@@ -1,10 +1,11 @@
 # Stars
 
-A flutter app to invest time to setup architecture basement
+A flutter app to invest time to setup architecture with flutter_redux and redux_epics
 
 ---
 
 ![High level diagram](./images/Redux-epic-architecture-High-level-diagram.png)
+![Low level diagram](./images/Redux-epic-architecture-Low-level-diagram.png)
 
 ## Getting Started 🚀
 
