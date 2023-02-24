@@ -1,5 +1,5 @@
+import 'package:stars/pages/spacex/spacex.dart';
 import 'package:stars/redux/actions.dart';
-import 'package:stars/spacex/redux/launch_item.dart';
 
 class FetchLaunchesAction extends Action {
   const FetchLaunchesAction();

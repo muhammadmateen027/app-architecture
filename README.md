@@ -4,7 +4,9 @@ A flutter app to invest time to setup architecture with flutter_redux and redux_
 
 ---
 
+### High level diagram
 ![High level diagram](./images/Redux-epic-architecture-High-level-diagram.png)
+### Low level diagram
 ![Low level diagram](./images/Redux-epic-architecture-Low-level-diagram.png)
 
 ## Getting Started 🚀

@@ -1,5 +1,5 @@
+import 'package:stars/pages/pages.dart';
 import 'package:stars/redux/actions.dart';
-import 'package:stars/spacex/redux/actions.dart';
 
 Stream<dynamic> resetAppState() async* {
   final iterator = initialActions.iterator;

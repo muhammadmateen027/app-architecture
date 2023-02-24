@@ -1,7 +1,6 @@
 import 'package:auto_route/annotations.dart';
-import 'package:stars/counter/view/counter_page.dart';
 import 'package:stars/navigation/paths.dart';
-import 'package:stars/spacex/spacex.dart';
+import 'package:stars/pages/pages.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -11,7 +10,7 @@ import 'package:stars/spacex/spacex.dart';
       initial: true,
       path: initialPath,
     ),
-    AutoRoute(page: CounterDetail, path: detailPagePath),
+    AutoRoute(page: LaunchDetailPage, path: detailPagePath),
     // RedirectRoute(path: '*', redirectTo: '/'),
   ],
 )

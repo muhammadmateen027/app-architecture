@@ -1,5 +1,5 @@
 import 'package:stars/data_state.dart';
-import 'package:stars/spacex/redux/launch_item.dart';
+import 'package:stars/pages/pages.dart';
 
 class SpaceXLaunchesState {
   const SpaceXLaunchesState({

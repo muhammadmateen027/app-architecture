@@ -1,5 +1,5 @@
 import 'package:meta/meta.dart';
-import 'package:stars/spacex/redux/state.dart';
+import 'package:stars/pages/pages.dart';
 import 'package:stars/system/startup/state.dart';
 
 @immutable

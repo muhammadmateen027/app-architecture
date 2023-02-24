@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:stars/data_state.dart';
+import 'package:stars/pages/pages.dart';
 import 'package:stars/redux/app_state.dart';
-import 'package:stars/spacex/redux/actions.dart';
-import 'package:stars/spacex/redux/launch_item.dart';
-import 'package:stars/spacex/spacex.dart';
 
 class SpaceXLaunches extends StatelessWidget {
   const SpaceXLaunches({super.key});

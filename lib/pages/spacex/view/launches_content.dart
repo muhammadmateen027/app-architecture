@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:stars/spacex/redux/launch_item.dart';
+import 'package:stars/pages/pages.dart';
 
 class LaunchesContent extends StatelessWidget {
   const LaunchesContent({

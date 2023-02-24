@@ -1,10 +1,10 @@
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:stars/api/api.dart';
+import 'package:stars/pages/pages.dart';
+import 'package:stars/pages/spacex/redux/launches_item_converter.dart';
 import 'package:stars/redux/actions.dart';
 import 'package:stars/redux/app_state.dart';
-import 'package:stars/spacex/redux/actions.dart';
-import 'package:stars/spacex/redux/launches_item_converter.dart';
 import 'package:stars/system/startup/graph.dart';
 
 Epic<AppState> _fetchLaunchesEpic(final Graph graph) =>

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stars/api/dto/dtos.dart';
 import 'package:stars/extensions/extensions.dart';
-import 'package:stars/spacex/redux/launch_item.dart';
+import 'package:stars/pages/pages.dart';
 
 @immutable
 class LaunchItemConverter {
