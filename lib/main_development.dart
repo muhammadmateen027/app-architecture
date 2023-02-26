@@ -10,9 +10,7 @@ import 'package:stars/system/startup/injector.dart';
 import 'package:stars/system/startup/modules/modules.dart';
 import 'package:stars/widgets/snapshot_widget_switcher.dart';
 
-void main({
-  final Environment environment = Environment.production,
-}) {
+void main({final Environment environment = Environment.staging}) {
   bootstrap(
     () {
       final appRouter = AppRouter();
@@ -38,10 +36,7 @@ class _Application extends StatelessWidget {
       builder: (final _, final snapshot) {
         return SnapshotWidgetSwitcher(
           snapshot: snapshot,
-          errorChild: _buildSplashScreen(
-            'error_child',
-            snapshot.error,
-          ),
+          errorChild: _buildErrorScreen('error_child', snapshot.error),
           loadingChild: _buildSplashScreen('loading_child'),
           child: OptionWidget<Graph>(
             key: const Key('primary_child'),
@@ -55,6 +50,22 @@ class _Application extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+
+  Widget _buildErrorScreen(final String key, [final Object? error]) {
+    return Directionality(
+      key: Key(key),
+      textDirection: TextDirection.ltr,
+      child: DecoratedBox(
+        decoration: const BoxDecoration(
+          color: Colors.red,
+        ),
+        child: Text(
+          error.toString(),
+          style: const TextStyle(color: Colors.white),
+        ),
+      ),
     );
   }
 
