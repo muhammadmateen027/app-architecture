@@ -7,6 +7,7 @@ import 'package:stars/pages/pages.dart';
 import 'package:stars/redux/app_state.dart';
 import 'package:stars/redux/epics.dart';
 import 'package:stars/redux/reducer.dart';
+import 'package:stars/system/app_lifecycle/reducer.dart';
 import 'package:stars/system/startup/graph.dart';
 import 'package:stars/system/startup/initial_actions.dart';
 import 'package:stars/system/startup/state.dart';
@@ -15,6 +16,7 @@ AppState appReducer(final AppState state, final dynamic action) {
   return AppState(
     startupState: const StartupState.initialState(),
     spaceXLaunchesState: spaceXReducer(state.spaceXLaunchesState, action),
+    systemState: systemReducer(state.systemState, action),
   );
 }
 

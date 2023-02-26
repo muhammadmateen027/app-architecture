@@ -42,7 +42,7 @@ packages:
     source: hosted
     version: "5.0.4"
   auto_route_generator:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: auto_route_generator
       sha256: de5bfbc02ae4eebb339dd90d325749ae7536e903f6513ef72b88954072d72b0e
@@ -365,14 +365,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
-  go_router:
-    dependency: "direct main"
-    description:
-      name: go_router
-      sha256: b4bb06205ec607278b6fc23db238278417bca84a3905779cc68d1eb7afae37e2
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.2.0"
   graphs:
     dependency: transitive
     description:

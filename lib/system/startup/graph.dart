@@ -22,5 +22,7 @@ abstract class Graph implements Built<Graph, GraphBuilder>, Disposable {
   double get timeDilation;
 
   @override
-  void dispose() {}
+  void dispose() {
+    internalDio.close();
+  }
 }
