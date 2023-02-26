@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-class DataState {
+class DataState extends Equatable {
   const DataState({required this.loadingState, this.exception});
 
   const DataState.none()
@@ -36,15 +37,7 @@ class DataState {
   }
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is DataState &&
-          runtimeType == other.runtimeType &&
-          loadingState == other.loadingState &&
-          exception == other.exception;
-
-  @override
-  int get hashCode => loadingState.hashCode ^ exception.hashCode;
+  List<Object?> get props => [loadingState, exception];
 }
 
 enum LoadingState { none, partial, loading, full, error }
