@@ -173,6 +173,19 @@ The directory structure with their responsibilities are mentioned below:
 
 ![Low level diagram](./images/Redux-epic-architecture-Low-level-diagram.png)
 
+
+### Advantages
+1. You may find this structure easy to test
+2. Test your API/Repositories in a separate layer
+3. Your Redux layer is testable in a separate directory and easy to test
+4. UI layer behaves as independently and easy to test
+5. Business logic `epic/reducer` will be managed separately to test
+6. `Module` by module testing can make sure the app is bug free
+7. In future if you need to change anything, you will be sure where to make changes and scalable
+8. You can add more feature without touching its architecture layer
+9. Easy to maintain the code and architecture
+10. Easy for learning for new people from web development (who have experience in Redux)
+
 ### Testing
 
 - Tests are under development and will try my best to cover 99%
@@ -186,4 +199,5 @@ The directory structure with their responsibilities are mentioned below:
 - [Helper options](https://pub.dev/packages/helper_options)
 - [Json annotation](https://pub.dev/packages/json_annotation)
 - [Redux epics](https://pub.dev/packages/redux_epics)
-- 
+
+Made with Love 
