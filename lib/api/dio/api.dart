@@ -34,7 +34,7 @@ class ApiImpl implements Api {
   }
 
   @override
-  Future<LaunchesList> launches() async {
+  Future<LaunchesListDto> launches() async {
     final url = '$_hostname/v4/launches';
     final response = await dio.getUri<DioResponseType>(url.toUri);
 
@@ -43,8 +43,8 @@ class ApiImpl implements Api {
   }
 }
 
-LaunchesList _buildLaunchList(List<dynamic> jsonData) {
-  return LaunchesList.fromJson(jsonData);
+LaunchesListDto _buildLaunchList(List<dynamic> jsonData) {
+  return LaunchesListDto.fromJson(jsonData);
 }
 
 extension URL on String {

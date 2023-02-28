@@ -1,22 +1,19 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:helper_options/helper_options.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'dtos.g.dart';
 
-class LaunchesList {
-  LaunchesList({
-    required this.launches,
-  });
+class LaunchesListDto {
+  LaunchesListDto({required this.launches});
 
-  factory LaunchesList.fromJson(List<dynamic> parsedJson) {
+  factory LaunchesListDto.fromJson(List<dynamic> parsedJson) {
     var launches = <LaunchDto>[];
     launches = parsedJson
         .map((i) => LaunchDto.fromJson(i as Map<String, dynamic>))
         .toList();
 
-    return LaunchesList(launches: launches);
+    return LaunchesListDto(launches: launches);
   }
 
   final List<LaunchDto> launches;
@@ -24,7 +21,7 @@ class LaunchesList {
 
 @immutable
 @JsonSerializable()
-class LaunchDto extends Equatable {
+class LaunchDto {
   const LaunchDto({
     this.links,
     this.rocket,
@@ -55,19 +52,6 @@ class LaunchDto extends Equatable {
 
   Map<String, dynamic> toJson() => _$LaunchDtoToJson(this);
 
-  @override
-  List<Object?> get props => [
-        links,
-        rocket,
-        details,
-        ships,
-        flightNumber,
-        name,
-        firedTime,
-        datePrecision,
-        id,
-      ];
-
   Option<DateTime> getFiresTime(String? firedTime) {
     if (firedTime == null) {
       return Option.empty();
@@ -79,7 +63,7 @@ class LaunchDto extends Equatable {
 
 @immutable
 @JsonSerializable()
-class LinksDto extends Equatable {
+class LinksDto {
   const LinksDto({
     this.patch,
     this.webcast,
@@ -96,14 +80,11 @@ class LinksDto extends Equatable {
   final String? wikipedia;
 
   Map<String, dynamic> toJson() => _$LinksDtoToJson(this);
-
-  @override
-  List<Object?> get props => [patch, webcast, article, wikipedia];
 }
 
 @immutable
 @JsonSerializable()
-class PatchDto extends Equatable {
+class PatchDto {
   const PatchDto({this.small, this.large});
 
   factory PatchDto.fromJson(Map<String, dynamic> json) =>
@@ -113,7 +94,4 @@ class PatchDto extends Equatable {
   final String? large;
 
   Map<String, dynamic> toJson() => _$PatchDtoToJson(this);
-
-  @override
-  List<Object?> get props => [small, large];
 }
