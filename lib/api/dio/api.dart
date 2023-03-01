@@ -36,10 +36,11 @@ class ApiImpl implements Api {
   @override
   Future<LaunchesListDto> launches() async {
     final url = '$_hostname/v4/launches';
-    final response = await dio.getUri<DioResponseType>(url.toUri);
+    final response = await dio.getUri<ListResponseData>(url.toUri);
 
     assertions.assertResponse(response);
-    return compute(_buildLaunchList, response.data as ListResponseData);
+
+    return compute(_buildLaunchList, response.data!);
   }
 }
 

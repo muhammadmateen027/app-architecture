@@ -4,8 +4,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'dtos.g.dart';
 
+@immutable
 class LaunchesListDto {
-  LaunchesListDto({required this.launches});
+  const LaunchesListDto({required this.launches});
 
   factory LaunchesListDto.fromJson(List<dynamic> parsedJson) {
     var launches = <LaunchDto>[];

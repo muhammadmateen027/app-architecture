@@ -5,32 +5,7 @@ in a nice way.
 In my opinion, flutter_redux and redux_epics is a great combination to setup base for
 flutter application.
 
-## Getting Started 🚀
-
-This project contains 3 flavors:
-
-- development
-- staging
-- production
-
-To run the desired flavor either use the launch configuration in VSCode/Android Studio or use the
-following commands:
-
-```sh
-# Development
-$ flutter run --flavor development --target lib/main_development.dart
-
-# Staging
-$ flutter run --flavor staging --target lib/main_staging.dart
-
-# Production
-$ flutter run --flavor production --target lib/main_production.dart
-```
-
-_\*Stars works on iOS, Android, and Web._
-
-> Note:  You can have a look in [flutter_redux](https://pub.dev/packages/flutter_redux),
-> and [redux_epics](https://pub.dev/packages/redux_epics).
+## Getting Started 🚀 redux_epics).
 
 [Nihad Delic](https://nihad-delic91.medium.com) also wrote a small application to understand how to use `flutter_redux`
 with `redux_epics` in the following
@@ -188,7 +163,8 @@ The directory structure with their responsibilities are mentioned below:
 
 ### Testing
 
-- Tests are under development and will try my best to cover 99%
+- Started writing test cases for the API module
+> Tests are under development and will try my best to cover 99%
 
 ### Libraries
 

@@ -1,5 +1,8 @@
-class TestModels {
-  List<dynamic> launchesResponse() {
+import 'package:stars/api/dio/api.dart';
+
+// ignore: avoid_classes_with_only_static_members
+class DioModels {
+  static List<dynamic> launchesResponse() {
     return <dynamic>[
       {
         'links': {
@@ -44,7 +47,7 @@ class TestModels {
     ];
   }
 
-  Map<String, dynamic> launchDto() {
+  static Map<String, dynamic> launchDto() {
     return {
       'links': {
         'patch': {
