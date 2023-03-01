@@ -5,9 +5,7 @@ import 'package:stars/api/api_assertion.dart';
 import 'package:stars/api/dto/dtos.dart';
 import 'package:stars/api/environment.dart';
 
-typedef DioResponseType = dynamic;
-typedef ResponseData = Map<String, dynamic>;
-typedef ListResponseData = List<dynamic>;
+typedef ResponseData = dynamic;
 
 @immutable
 class ApiImpl implements Api {
@@ -27,25 +25,28 @@ class ApiImpl implements Api {
   Future<LaunchDto> getLaunch(String id) async {
     final url = '$_hostname/v4/launches/$id';
 
-    final response = await dio.getUri<DioResponseType>(url.toUri);
+    final response = await dio.getUri<ResponseData>(url.toUri);
 
     assertions.assertResponse(response);
-    return LaunchDto.fromJson(response.data as ResponseData);
+    return LaunchDto.fromJson(response.data);
   }
 
   @override
-  Future<LaunchesListDto> launches() async {
+  Future<List<LaunchDto>> launches() async {
     final url = '$_hostname/v4/launches';
-    final response = await dio.getUri<ListResponseData>(url.toUri);
+    final response = await dio.getUri<ResponseData>(url.toUri);
 
     assertions.assertResponse(response);
 
-    return compute(_buildLaunchList, response.data!);
+    return compute(_buildLaunchList, response.data ?? <dynamic>[]);
   }
 }
 
-LaunchesListDto _buildLaunchList(List<dynamic> jsonData) {
-  return LaunchesListDto.fromJson(jsonData);
+List<LaunchDto> _buildLaunchList(ResponseData jsonData) {
+  return (jsonData! as Iterable)
+      // ignore: unnecessary_lambdas
+      .map((final e) => LaunchDto.fromJson(e))
+      .toList();
 }
 
 extension URL on String {

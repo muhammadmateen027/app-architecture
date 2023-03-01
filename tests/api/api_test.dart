@@ -37,13 +37,24 @@ void main() {
   );
 
   test('get all the launches list', () async {
-    builder.withSuccessfulGetResponse<ListResponseData>(
+    builder.withSuccessfulGetResponse(
       DioModels.launchesResponse(),
     );
 
     final result = await api.launches();
 
-    expect(result, isA<LaunchesListDto>());
+    expect(result, isA<List<LaunchDto>>());
+  });
+
+  test('throws http exception if response is invalid', () async {
+    builder
+      ..withFailedGetResponse(400)
+      ..withResponseAssertThrows();
+
+    expect(
+      () async => api.launches(),
+      throwsA(isA<HttpException>()),
+    );
   });
 }
 
@@ -62,9 +73,9 @@ class _ArrangeBuilder {
     when(() => _assertions.assertResponse(any())).thenAnswer((final _) => {});
   }
 
-  void withFailedGetResponse(final int status, [final DioResponseType data]) {
-    when(() => dio.getUri<DioResponseType>(any())).thenAnswer(
-      (final _) async => Response<DioResponseType>(
+  void withFailedGetResponse(final int status, [final ResponseData? data]) {
+    when(() => dio.getUri<ResponseData>(any())).thenAnswer(
+      (final _) async => Response<ResponseData>(
         requestOptions: RequestOptions(path: 'any'),
         data: data,
         extra: {},
@@ -79,12 +90,13 @@ class _ArrangeBuilder {
     );
   }
 
-  void withSuccessfulGetResponse<T>(
-    final T data, {
+  void withSuccessfulGetResponse(
+    final ResponseData data, {
     final String? url,
   }) {
-    when(() => dio.getUri<T>(url != null ? Uri.parse(url) : any())).thenAnswer(
-      (final _) async => Response<T>(
+    when(() => dio.getUri<ResponseData>(url != null ? Uri.parse(url) : any()))
+        .thenAnswer(
+      (final _) async => Response<ResponseData>(
         requestOptions: RequestOptions(path: 'any'),
         data: data,
         extra: {},

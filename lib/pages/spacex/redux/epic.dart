@@ -24,7 +24,7 @@ Epic<AppState> _refreshLaunchesEpic(final Graph graph) =>
 Stream<Action> _fetchLaunches(final Api api) async* {
   try {
     final launchesDto = await api.launches();
-    final launches = const LaunchItemConverter().convert(launchesDto.launches);
+    final launches = const LaunchItemConverter().convert(launchesDto);
 
     yield FetchLaunchesSucceededAction(launches);
     // ignore: avoid_catches_without_on_clauses
