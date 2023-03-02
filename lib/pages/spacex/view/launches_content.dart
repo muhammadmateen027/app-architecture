@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:stars/extensions/extensions.dart';
 import 'package:stars/pages/pages.dart';
 
 class LaunchesContent extends StatelessWidget {
@@ -47,7 +48,7 @@ class _LaunchTile extends StatelessWidget {
       ),
       trailing: Icon(buildIcon),
       title: Text(launchItem.name),
-      titleTextStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
+      titleTextStyle: context.textTheme.labelLarge?.copyWith(
             fontWeight: FontWeight.bold,
           ),
       subtitle: Column(
@@ -59,7 +60,7 @@ class _LaunchTile extends StatelessWidget {
               padding: const EdgeInsets.only(top: 8),
               child: Text(
                 launchItem.dateTime.value.toString(),
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                style: context.textTheme.bodyMedium?.copyWith(
                       color: Colors.blue,
                     ),
               ),
