@@ -27,9 +27,9 @@ extension StringExtension on String {
           .map((str) => str.capitaliseFirstChar)
           .join(' ');
 
-  double get parseDouble => double.parse(this);
+  double get toDouble => double.parse(this);
 
-  int get parseInt => int.parse(this);
+  int get toInt => int.parse(this);
 
   bool get isUrl => contains('https://') || contains('http://');
 
@@ -91,6 +91,16 @@ extension BuildContextExtension on BuildContext {
 
   ColorScheme get colorScheme => theme.colorScheme;
 
+  Color get primaryColor => colorScheme.primary;
+
+  Color get secondaryColor => colorScheme.secondary;
+
+  Color get backgroundColor => colorScheme.background;
+
+  Color get onBackgroundColor => colorScheme.onBackground;
+
+  Color get onError => colorScheme.onError;
+
   TextTheme get textTheme => theme.textTheme;
 
   ButtonThemeData get buttonTheme => theme.buttonTheme;
@@ -99,15 +109,17 @@ extension BuildContextExtension on BuildContext {
 
   Size get size => mediaQuery.size;
 
-  double get screenHeight => size.height;
+  double get aspectRatio => size.aspectRatio;
 
-  double get screenWidth => size.width;
+  double get height => size.height;
 
-  bool get isMobile => screenWidth < 650;
+  double get width => size.width;
 
-  bool get isTablet => screenWidth < 1024 && screenWidth >= 650;
+  bool get isMobile => width < 650;
 
-  bool get isDesktop => screenWidth >= 1024;
+  bool get isTablet => width < 1024 && width >= 650;
+
+  bool get isDesktop => width >= 1024;
 }
 
 extension DateTimeExension on DateTime {
@@ -116,6 +128,8 @@ extension DateTimeExension on DateTime {
 
   bool isLaterOrEqualDay(final DateTime other) =>
       isSameDay(other) || isAfter(other);
+
+  Duration difference(DateTime dateTime) => this.difference(dateTime);
 
   DateTime get firstDayOfMonth => DateTime(year, month);
 
