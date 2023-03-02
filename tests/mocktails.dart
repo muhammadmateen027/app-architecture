@@ -11,7 +11,3 @@ class MockGraph extends Mock implements Graph {}
 class MockStore extends Mock implements Store<AppState> {}
 
 class MockApi extends Mock implements Api {}
-
-class MockDio extends Mock implements Dio {}
-
-class MockApiAssertions extends Mock implements ApiAssertions {}

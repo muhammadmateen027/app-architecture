@@ -10,8 +10,7 @@ import 'package:stars/api/environment.dart';
 import 'package:test/test.dart';
 
 import '../fakes.dart';
-import '../mocktails.dart';
-import 'dio/dio_models.dart';
+import 'dio/dio_response_models.dart';
 
 void main() {
   late Api api;
@@ -38,7 +37,7 @@ void main() {
 
   test('get all the launches list', () async {
     builder.withSuccessfulGetResponse(
-      DioModels.launchesResponse(),
+      DioResponseModels.launchesResponse(),
     );
 
     final result = await api.launches();
@@ -105,3 +104,7 @@ class _ArrangeBuilder {
     );
   }
 }
+
+class MockDio extends Mock implements Dio {}
+
+class MockApiAssertions extends Mock implements ApiAssertions {}
