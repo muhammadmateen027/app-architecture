@@ -120,6 +120,15 @@ extension BuildContextExtension on BuildContext {
   bool get isTablet => width < 1024 && width >= 650;
 
   bool get isDesktop => width >= 1024;
+
+  NavigatorState get navigate => Navigator.of(this);
+
+  void pop([Object? object]) => navigate.pop(object);
+
+  Future<T?> push<T>(Route<T> route) => navigate.push(route);
+
+  Future<Object?> pushName(String routeName, {Object? arguments}) =>
+      navigate.pushNamed(routeName, arguments: arguments);
 }
 
 extension DateTimeExension on DateTime {
