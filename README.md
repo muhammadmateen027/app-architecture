@@ -163,8 +163,13 @@ The directory structure with their responsibilities are mentioned below:
 
 ### Testing
 
-- Started writing test cases for the API module
-> Tests are under development and will try my best to cover 99%
+- Unit tests covers
+  - API
+  - redux
+  - system
+  - Common widgets
+
+> Note: Tests(Unit, Widget, and e2e_integration) are under development, and will try my best to cover 99%.
 
 ### Libraries
 
@@ -176,4 +181,3 @@ The directory structure with their responsibilities are mentioned below:
 - [Json annotation](https://pub.dev/packages/json_annotation)
 - [Redux epics](https://pub.dev/packages/redux_epics)
 
-Made with Love 
