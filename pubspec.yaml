@@ -27,7 +27,7 @@ dev_dependencies:
   auto_route_generator: ^5.0.3
   build: ^2.3.1
   build_runner: ^2.3.3
-  built_value_generator: ^8.4.3
+  built_value_generator: ^8.4.4
   built_value: ^8.4.3
   flutter_test:
     sdk: flutter
