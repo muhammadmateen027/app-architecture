@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:stars/api/environment.dart';
 import 'package:stars/system/startup/graph.dart';
+import 'package:stars/system/startup/modules/base.dart';
 import 'package:stars/system/startup/modules/modules.dart';
 
 import '../stub/responder.dart';
@@ -38,4 +40,25 @@ class InternalRestTestModule extends InternalRestModule {
 
     handler.next(e);
   }
+}
+
+class EnvironmentTestModule extends Module<Environment> {
+  const EnvironmentTestModule();
+
+  @override
+  Future<Environment> doInitialize(final GraphBuilder builder) async =>
+      Environment.testing;
+
+  @override
+  Future<void> doInject(
+    final Environment value,
+    final GraphBuilder builder,
+  ) async =>
+      builder.environment = value;
+}
+
+class TimeDilationTestModule extends TimeDilationModule {
+  const TimeDilationTestModule([
+    final double dilation = 0.01,
+  ]) : super(dilation);
 }
