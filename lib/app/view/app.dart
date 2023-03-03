@@ -1,3 +1,4 @@
+import 'package:custom_app_ui/custom_app_ui.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -59,12 +60,7 @@ class _ApplicationState extends State<Application> {
             onLifecycleChanged: vm.positionChanged,
             child: MaterialApp.router(
               title: 'StarXSpace',
-              theme: ThemeData(
-                appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
-                colorScheme: ColorScheme.fromSwatch(
-                  accentColor: const Color(0xFF13B9FF),
-                ),
-              ),
+              theme: const AppTheme().themeData,
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
               routerDelegate: widget.appRouter.delegate(),

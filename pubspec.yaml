@@ -11,6 +11,8 @@ dependencies:
   auto_route: ^5.0.4
   cached_network_image: ^3.2.3
   connectivity_plus: ^3.0.3
+  custom_app_ui:
+    path: packages/custom_app_ui
   dio: ^5.0.1
   equatable: ^2.0.5
   flutter:
@@ -18,10 +20,12 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_redux: ^0.10.0
+  google_fonts: ^4.0.3
   helper_options: ^1.0.0+2
   intl: ^0.17.0
   json_annotation: ^4.8.0
   redux_epics: ^0.15.1
+
 
 dev_dependencies:
   auto_route_generator: ^5.0.3

@@ -1,0 +1,55 @@
+name: custom_app_ui
+description: App UI Component Library
+publish_to: none
+
+environment:
+  sdk: ">=2.19.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_svg: ^1.0.0
+  lottie: ^1.2.1
+  rich_text_controller: ^1.4.0
+
+dev_dependencies:
+  build_runner: ^2.1.5
+  flutter_gen_runner:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^2.4.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+  fonts:
+    - family: Open Sans
+      fonts:
+        - asset: assets/fonts/OpenSans.ttf
+          weight: 900
+        - asset: assets/fonts/OpenSans.ttf
+          weight: 700
+        - asset: assets/fonts/OpenSans.ttf
+          weight: 600
+        - asset: assets/fonts/OpenSans.ttf
+          weight: 400
+        - asset: assets/fonts/OpenSans-Italic.ttf
+          weight: 900
+          style: italic
+        - asset: assets/fonts/OpenSans-Italic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/OpenSans-Italic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/OpenSans-Italic.ttf
+          weight: 400
+          style: italic
+
+flutter_gen:
+  output: lib/src/generated/
+  lineLength: 80
+
+  integrations:
+    flutter_svg: true
