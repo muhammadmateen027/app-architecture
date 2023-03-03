@@ -18,7 +18,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_redux: ^0.10.0
-  helper_options: ^0.1.0+3
+  helper_options: ^1.0.0+2
   intl: ^0.17.0
   json_annotation: ^4.8.0
   redux_epics: ^0.15.1
