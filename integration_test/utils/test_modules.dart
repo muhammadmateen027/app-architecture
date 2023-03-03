@@ -62,3 +62,23 @@ class TimeDilationTestModule extends TimeDilationModule {
     final double dilation = 0.01,
   ]) : super(dilation);
 }
+
+extension ModuleReplacement on List<Module<dynamic>> {
+  List<Module<dynamic>> replace({
+    required final Type moduleType,
+    required final Module<dynamic> replacement,
+  }) {
+    final newModules = List.of(this);
+    for (var i = 0; i < length; i++) {
+      if (this[i].runtimeType == moduleType) {
+        newModules
+          ..insert(i + 1, replacement)
+          ..removeAt(i);
+
+        break;
+      }
+    }
+
+    return newModules;
+  }
+}
