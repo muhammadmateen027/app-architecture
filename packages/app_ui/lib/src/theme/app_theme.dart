@@ -1,4 +1,4 @@
-import 'package:custom_app_ui/custom_app_ui.dart';
+import 'package:custom_app_ui/app_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -68,10 +68,10 @@ class AppTheme {
   AppBarTheme get _appBarTheme {
     return AppBarTheme(
       iconTheme: _iconTheme,
-      titleTextStyle: _textTheme.titleMedium,
+      titleTextStyle: _textTheme.labelLarge,
       toolbarTextStyle: _textTheme.titleMedium,
       elevation: 0,
-      backgroundColor: AppColors.transparent,
+      backgroundColor: AppColors.primaryColor,
     );
   }
 
@@ -114,45 +114,24 @@ class AppTheme {
   InputDecorationTheme get _inputDecorationTheme {
     return InputDecorationTheme(
       border: UnderlineInputBorder(
-        borderSide: BorderSide(
-          width: 2,
-          color: AppColors.grey.shade300,
-        ),
+        borderSide: BorderSide(width: 2, color: AppColors.grey.shade300),
       ),
       enabledBorder: UnderlineInputBorder(
-        borderSide: BorderSide(
-          width: 2,
-          color: AppColors.grey.shade300,
-        ),
+        borderSide: BorderSide(width: 2, color: AppColors.grey.shade300),
       ),
       errorBorder: const UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: AppColors.errorColor,
-          width: 2,
-        ),
+        borderSide: BorderSide(color: AppColors.errorColor, width: 2),
       ),
       focusedBorder: const UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: AppColors.primaryColor,
-          width: 2,
-        ),
+        borderSide: BorderSide(color: AppColors.primaryColor, width: 2),
       ),
       focusedErrorBorder: const UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: AppColors.errorColor,
-          width: 2,
-        ),
+        borderSide: BorderSide(color: AppColors.errorColor, width: 2),
       ),
       disabledBorder: UnderlineInputBorder(
-        borderSide: BorderSide(
-          width: 2,
-          color: AppColors.grey.shade300,
-        ),
+        borderSide: BorderSide(width: 2, color: AppColors.grey.shade300),
       ),
-      hintStyle: const TextStyle(
-        color: AppColors.primaryColor,
-        fontSize: 11,
-      ),
+      hintStyle: const TextStyle(color: AppColors.primaryColor, fontSize: 11),
     );
   }
 

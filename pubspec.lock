@@ -17,6 +17,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.4.0"
+  app_ui:
+    dependency: "direct main"
+    description:
+      path: "packages/app_ui"
+      relative: true
+    source: path
+    version: "0.0.0"
   archive:
     dependency: transitive
     description:
@@ -241,13 +248,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
-  custom_app_ui:
-    dependency: "direct main"
-    description:
-      path: "packages/custom_app_ui"
-      relative: true
-    source: path
-    version: "0.0.0"
   dart_style:
     dependency: transitive
     description:

@@ -8,11 +8,11 @@ environment:
   flutter: 3.7.1
 
 dependencies:
+  app_ui:
+    path: packages/app_ui
   auto_route: ^5.0.4
   cached_network_image: ^3.2.3
   connectivity_plus: ^3.0.3
-  custom_app_ui:
-    path: packages/custom_app_ui
   dio: ^5.0.1
   equatable: ^2.0.5
   flutter:

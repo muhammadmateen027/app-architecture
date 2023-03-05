@@ -1,4 +1,4 @@
-import 'package:custom_app_ui/custom_app_ui.dart';
+import 'package:custom_app_ui/app_ui.dart';
 import 'package:custom_app_ui/src/generated/fonts.gen.dart';
 import 'package:flutter/widgets.dart';
 
