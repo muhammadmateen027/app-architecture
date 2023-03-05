@@ -11,12 +11,14 @@ import 'package:stars/system/app_lifecycle/reducer.dart';
 import 'package:stars/system/startup/graph.dart';
 import 'package:stars/system/startup/initial_actions.dart';
 import 'package:stars/system/startup/state.dart';
+import 'package:stars/system/theme/reducer.dart';
 
 AppState appReducer(final AppState state, final dynamic action) {
   return AppState(
     startupState: const StartupState.initialState(),
     spaceXLaunchesState: spaceXReducer(state.spaceXLaunchesState, action),
     systemState: systemReducer(state.systemState, action),
+    themeState: themeReducer(state.themeState, action),
   );
 }
 

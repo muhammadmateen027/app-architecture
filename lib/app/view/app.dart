@@ -1,10 +1,9 @@
-import 'package:app_ui/app_ui.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:stars/api/environment.dart';
-import 'package:stars/l10n/l10n.dart';
+import 'package:stars/app/view/app_builder.dart';
 import 'package:stars/navigation/app_router.gr.dart';
 import 'package:stars/redux/app_state.dart';
 import 'package:stars/redux/core.dart';
@@ -58,14 +57,7 @@ class _ApplicationState extends State<Application> {
         builder: (_, vm) {
           return StateObserver(
             onLifecycleChanged: vm.positionChanged,
-            child: MaterialApp.router(
-              title: 'StarXSpace',
-              theme: const AppTheme().themeData,
-              localizationsDelegates: AppLocalizations.localizationsDelegates,
-              supportedLocales: AppLocalizations.supportedLocales,
-              routerDelegate: widget.appRouter.delegate(),
-              routeInformationParser: widget.appRouter.defaultRouteParser(),
-            ),
+            child: AppBuilder(appRouter: widget.appRouter),
           );
         },
       ),

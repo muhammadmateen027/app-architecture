@@ -3,8 +3,10 @@ import 'package:stars/pages/spacex/redux/epic.dart';
 import 'package:stars/redux/app_state.dart';
 import 'package:stars/system/app_lifecycle/epic.dart';
 import 'package:stars/system/startup/graph.dart';
+import 'package:stars/system/theme/theme.dart';
 
 Epic<AppState> epics(final Graph graph) => combineEpics<AppState>([
       appLifecycleStateEpics(graph),
       launchesListEpics(graph),
+      appThemeListEpics(graph),
     ]);

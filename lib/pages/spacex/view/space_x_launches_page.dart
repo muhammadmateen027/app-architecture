@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import 'package:stars/navigation/paths.dart';
 import 'package:stars/pages/pages.dart';
 import 'package:stars/redux/app_state.dart';
 import 'package:stars/redux/data_state.dart';
@@ -29,7 +31,7 @@ class SpaceXLaunches extends StatelessWidget {
               ? const Center(child: CircularProgressIndicator())
               : LaunchesContent(
                   launches: viewModel.launches,
-                  onLaunchTapped: viewModel.onLaunchTapped,
+                  onLaunchTapped: (item) => viewModel.onLaunchTapped(context),
                 ),
         );
       },
@@ -57,7 +59,9 @@ class _ViewModel extends Equatable {
   final void Function(dynamic) onDispatch;
   final DataState dataState;
 
-  void onLaunchTapped(final LaunchItem launchItem) => onDispatch;
+  void onLaunchTapped(final BuildContext context) {
+    AutoRouter.of(context).pushNamed(detailPagePath);
+  }
 
   void onRefreshTapped() => onDispatch(const RefreshLaunchesAction());
 
