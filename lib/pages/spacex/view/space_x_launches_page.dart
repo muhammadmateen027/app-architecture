@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import 'package:stars/extensions/extensions.dart';
 import 'package:stars/navigation/paths.dart';
 import 'package:stars/pages/pages.dart';
 import 'package:stars/redux/app_state.dart';
@@ -20,6 +21,7 @@ class SpaceXLaunches extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: const Text('SpaceX Launches'),
+            backgroundColor: context.primaryColor,
             actions: [
               IconButton(
                 onPressed: viewModel.onRefreshTapped,

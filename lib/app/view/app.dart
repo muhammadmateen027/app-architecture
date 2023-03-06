@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
-import 'package:stars/api/environment.dart';
 import 'package:stars/app/view/app_builder.dart';
 import 'package:stars/navigation/app_router.gr.dart';
 import 'package:stars/redux/app_state.dart';
@@ -50,14 +49,14 @@ class _ApplicationState extends State<Application> {
       store: starXStore.store,
       child: StoreConnector<AppState, MainViewModel>(
         distinct: true,
-        converter: (final store) => MainViewModel.from(
-          store,
-          widget.graph.environment,
-        ),
+        converter: MainViewModel.from,
         builder: (_, vm) {
           return StateObserver(
             onLifecycleChanged: vm.positionChanged,
-            child: AppBuilder(appRouter: widget.appRouter),
+            child: AppBuilder(
+              appRouter: widget.appRouter,
+              environment: widget.graph.environment,
+            ),
           );
         },
       ),
@@ -67,41 +66,19 @@ class _ApplicationState extends State<Application> {
 
 @immutable
 class MainViewModel extends Equatable {
-  const MainViewModel._({
-    required this.onDispatch,
-    required this.environment,
-  });
+  const MainViewModel._({required this.onDispatch});
 
   factory MainViewModel.from(
     final Store<AppState> store,
-    final Environment environment,
   ) {
-    return MainViewModel._(
-      onDispatch: store.dispatch,
-      environment: environment,
-    );
+    return MainViewModel._(onDispatch: store.dispatch);
   }
 
   final void Function(dynamic) onDispatch;
-  final Environment environment;
 
   void positionChanged(final LifecycleState position) =>
       onDispatch(StateChangedAction(position));
 
-  String applicationTitleSuffix() =>
-      environmentLabel.isNotEmpty ? ' - $environmentLabel' : '';
-
-  String get environmentLabel {
-    switch (environment) {
-      case Environment.staging:
-        return 'staging';
-      case Environment.stub:
-        return 'stub';
-      default:
-        return '';
-    }
-  }
-
   @override
-  List<Object?> get props => [environment];
+  List<Object> get props => [];
 }

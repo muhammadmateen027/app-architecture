@@ -26,4 +26,17 @@ extension EnvironmentExt on Environment {
       testingDomain: 'api.spacexdata.com',
     );
   }
+
+  String get debugLabel {
+    switch (this) {
+      case Environment.staging:
+        return 'staging';
+      case Environment.stub:
+        return 'stub';
+      case Environment.testing:
+        return 'test';
+      default:
+        return '';
+    }
+  }
 }

@@ -8,24 +8,38 @@ import 'package:stars/navigation/app_router.gr.dart';
 import 'package:stars/redux/app_state.dart';
 import 'package:stars/system/theme/actions.dart';
 
+import '../../api/environment.dart';
+import '../../widgets/info_banner.dart';
+
 class AppBuilder extends StatelessWidget {
-  const AppBuilder({required this.appRouter, super.key});
+  const AppBuilder({
+    required this.appRouter,
+    required this.environment,
+    super.key,
+  });
 
   final AppRouter appRouter;
+  final Environment environment;
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, _ViewModel>(
       distinct: true,
-      converter: _ViewModel.from,
+      converter: (final store) => _ViewModel.from(store, environment),
       builder: (_, viewModel) {
         return MaterialApp.router(
-          title: 'StarXSpace',
+          title: 'StarXSpace${viewModel.applicationTitleSuffix}',
           theme: viewModel.appTheme,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           routerDelegate: appRouter.delegate(),
           routeInformationParser: appRouter.defaultRouteParser(),
+          builder: (final context, final child) {
+            return InfoBanner(
+              label: viewModel.environment.debugLabel,
+              child: child ?? const Offstage(),
+            );
+          },
         );
       },
     );
@@ -37,16 +51,22 @@ class _ViewModel extends Equatable {
   const _ViewModel._({
     required this.onDispatch,
     required this.themeMode,
+    required this.environment,
   });
 
-  factory _ViewModel.from(final Store<AppState> store) {
+  factory _ViewModel.from(
+    final Store<AppState> store,
+    final Environment environment,
+  ) {
     return _ViewModel._(
       onDispatch: store.dispatch,
       themeMode: store.state.themeState.themeMode,
+      environment: environment,
     );
   }
 
   final AppThemeMode themeMode;
+  final Environment environment;
   final void Function(dynamic) onDispatch;
 
   ThemeData get appTheme {
@@ -57,6 +77,9 @@ class _ViewModel extends Equatable {
     return const AppTheme().themeData;
   }
 
+  String get applicationTitleSuffix =>
+      environment.debugLabel.isNotEmpty ? ' - ${environment.debugLabel}' : '';
+
   @override
-  List<Object> get props => [themeMode];
+  List<Object> get props => [themeMode, environment];
 }

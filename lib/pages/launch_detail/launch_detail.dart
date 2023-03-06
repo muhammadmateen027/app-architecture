@@ -22,12 +22,12 @@ class LaunchDetailPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  onPressed: () => viewModel.onDarkModePressed(),
+                  onPressed: viewModel.onDarkModePressed,
                   color: context.secondaryColor,
                   icon: const Icon(Icons.nights_stay),
                 ),
                 IconButton(
-                  onPressed: () => viewModel.onLightModePressed(),
+                  onPressed: viewModel.onLightModePressed,
                   icon: const Icon(Icons.sunny),
                 ),
               ],
@@ -41,14 +41,10 @@ class LaunchDetailPage extends StatelessWidget {
 
 @immutable
 class _ViewModel extends Equatable {
-  const _ViewModel._({
-    required this.onDispatch,
-  });
+  const _ViewModel._({required this.onDispatch});
 
   factory _ViewModel.from(final Store<AppState> store) {
-    return _ViewModel._(
-      onDispatch: store.dispatch,
-    );
+    return _ViewModel._(onDispatch: store.dispatch);
   }
 
   final void Function(dynamic) onDispatch;
