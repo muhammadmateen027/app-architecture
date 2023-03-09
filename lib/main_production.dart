@@ -1,6 +1,3 @@
-// import 'package:stars/app/app.dart';
-// import 'package:stars/bootstrap.dart';
-//
-// void main() {
-//   bootstrap(() => const App());
-// }
+import 'package:stars/main.dart' as app;
+
+void main() => app.main();
