@@ -11,6 +11,7 @@ dependencies:
   app_ui:
     path: packages/app_ui
   auto_route: ^5.0.4
+  built_value: ^8.4.4
   cached_network_image: ^3.2.3
   connectivity_plus: ^3.0.3
   dio: ^5.0.1
@@ -32,7 +33,6 @@ dev_dependencies:
   build: ^2.3.1
   build_runner: ^2.3.3
   built_value_generator: ^8.4.4
-  built_value: ^8.4.4
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
