@@ -37,7 +37,7 @@ class AppBuilder extends StatelessWidget {
           builder: (final context, final child) {
             return InfoBanner(
               label: viewModel.environment.debugLabel,
-              child: child,
+              child: child ?? const Offstage(),
             );
           },
         );

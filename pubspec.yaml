@@ -40,6 +40,7 @@ dev_dependencies:
     sdk: flutter
   json_serializable: ^6.6.1
   mocktail: ^0.3.0
+  patrol: ^1.0.6
 
 flutter:
   uses-material-design: true

@@ -4,25 +4,29 @@ import 'package:helper_options/helper_options.dart';
 import 'package:stars/extensions/extensions.dart';
 
 class InfoBanner extends StatelessWidget {
-  const InfoBanner({this.child, this.label = '', super.key});
+  const InfoBanner({
+    required this.child,
+    this.label = '',
+    super.key,
+  });
 
-  final Widget? child;
+  final Widget child;
   final String label;
 
   @override
   Widget build(final BuildContext context) {
-    final result = child ?? const Offstage();
     return OptionWidget<String>(
       option: Option.of(label),
-      empty: result,
+      empty: child,
       builder: (_, __) {
         return Banner(
+          key: const Key('custom_app_banner'),
           message: label.toUpperCase(),
           textStyle: const TextStyle(color: Colors.black),
           textDirection: TextDirection.ltr,
           location: BannerLocation.topStart,
           color: context.backgroundColor,
-          child: result,
+          child: child,
         );
       },
     );
