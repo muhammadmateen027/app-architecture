@@ -6,15 +6,6 @@ class CounterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CounterView();
-  }
-}
-
-class CounterView extends StatelessWidget {
-  const CounterView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
     final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(title: Text(l10n.counterAppBarTitle)),

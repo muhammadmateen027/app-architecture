@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:helper_options/helper_options.dart';
 import 'package:stars/app/app.dart';
 import 'package:stars/bootstrap.dart';
+import 'package:stars/navigation/app_router.gr.dart';
 import 'package:stars/system/startup/graph.dart';
 import 'package:stars/system/startup/initializer.dart';
 import 'package:stars/system/startup/injector.dart';
@@ -12,19 +13,23 @@ import 'package:stars/widgets/snapshot_widget_switcher.dart';
 void main({
   Environment environment = Environment.testing,
 }) {
+  final appRoute = AppRouter();
+
   bootstrap(
     () {
       return _Application(
         const Initializer(modules).initialise(environment),
+        appRoute,
       );
     },
   );
 }
 
 class _Application extends StatelessWidget {
-  const _Application(this.graph);
+  const _Application(this.graph, this.appRouter);
 
   final Future<Graph> graph;
+  final AppRouter appRouter;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +46,10 @@ class _Application extends StatelessWidget {
             builder: (_, value) {
               return InjectorWidget(
                 graph: value,
-                child: Application(graph: value),
+                child: Application(
+                  graph: value,
+                  appRouter: appRouter,
+                ),
               );
             },
           ),
