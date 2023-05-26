@@ -5,6 +5,8 @@ import 'package:stars/l10n/l10n.dart';
 import 'package:stars/system/app_life_cycle/cubit.dart';
 import 'package:stars/system/app_life_cycle/state_observer.dart';
 import 'package:stars/system/startup/graph.dart';
+import 'package:stars/utils/environment.dart';
+import 'package:stars/widgets/widgets.dart';
 
 class Application extends StatelessWidget {
   const Application({required this.graph, super.key});
@@ -42,7 +44,17 @@ class AppBuilder extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      builder: (_, child) {
+        return InfoBanner(
+          label: context.read<Graph>().environment.appTitleSuffix,
+          child: Material(
+            color: Colors.red, // this could be any colour
+            child: SafeArea(
+              child: child ?? const SizedBox(),
+            ),
+          ),
+        );
+      },
     );
   }
 }

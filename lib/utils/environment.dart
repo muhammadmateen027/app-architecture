@@ -42,5 +42,5 @@ extension EnvironmentX on Environment {
     }
   }
 
-  String appTitleSuffix() => toLabel.isNotEmpty ? toLabel : '';
+  String get appTitleSuffix => toLabel.isNotEmpty ? toLabel : '';
 }
