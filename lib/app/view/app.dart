@@ -1,9 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stars/counter/counter.dart';
 import 'package:stars/l10n/l10n.dart';
+import 'package:stars/system/app_life_cycle/cubit.dart';
+import 'package:stars/system/app_life_cycle/state_observer.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (blocContext) => AppLifeCycleCubit(),
+      child: StateObserver(
+        onLifecycleChanged: (status) {
+          context.read<AppLifeCycleCubit>().stateChangedAction(status);
+        },
+        child: const AppBuilder(),
+      ),
+    );
+  }
+}
+
+class AppBuilder extends StatelessWidget {
+  const AppBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
