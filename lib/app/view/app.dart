@@ -4,19 +4,25 @@ import 'package:stars/counter/counter.dart';
 import 'package:stars/l10n/l10n.dart';
 import 'package:stars/system/app_life_cycle/cubit.dart';
 import 'package:stars/system/app_life_cycle/state_observer.dart';
+import 'package:stars/system/startup/graph.dart';
 
-class App extends StatelessWidget {
-  const App({super.key});
+class Application extends StatelessWidget {
+  const Application({required this.graph, super.key});
+
+  final Graph graph;
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (blocContext) => AppLifeCycleCubit(),
-      child: StateObserver(
-        onLifecycleChanged: (status) {
-          context.read<AppLifeCycleCubit>().stateChangedAction(status);
-        },
-        child: const AppBuilder(),
+    return RepositoryProvider(
+      create: (_) => graph,
+      child: BlocProvider(
+        create: (blocContext) => AppLifeCycleCubit(),
+        child: StateObserver(
+          onLifecycleChanged: (status) {
+            context.read<AppLifeCycleCubit>().stateChangedAction(status);
+          },
+          child: const AppBuilder(),
+        ),
       ),
     );
   }

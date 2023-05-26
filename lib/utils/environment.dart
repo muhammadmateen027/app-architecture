@@ -14,8 +14,8 @@ enum Environment {
   bool get isStub => this == Environment.stub;
 
   String _domain({
-    required final String productionDomain,
-    required final String testingDomain,
+    required String productionDomain,
+    required String testingDomain,
   }) {
     switch (this) {
       case Environment.production:
@@ -41,4 +41,6 @@ extension EnvironmentX on Environment {
         return '';
     }
   }
+
+  String appTitleSuffix() => toLabel.isNotEmpty ? toLabel : '';
 }

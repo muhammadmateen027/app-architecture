@@ -1,6 +1,3 @@
-import 'package:stars/app/app.dart';
-import 'package:stars/bootstrap.dart';
+import 'package:stars/main.dart' as app;
 
-void main() {
-  bootstrap(() => const App());
-}
+void main() => app.main();
