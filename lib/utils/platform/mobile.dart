@@ -11,7 +11,7 @@ bool isWindows = Platform.isWindows;
 bool isAndroid = Platform.isAndroid;
 const bool isWeb = false;
 
-bool isApple(final BuildContext context) {
+bool isApple(BuildContext context) {
   final platform = Theme.of(context).platform;
 
   return platform == TargetPlatform.iOS || platform == TargetPlatform.macOS;

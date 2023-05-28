@@ -6,7 +6,7 @@ enum Environment {
   stub,
 
   /// Predefined set of API responses form pre-deployed response files
-  testing;
+  develop;
 
   bool get isProductionEnv =>
       _domain(productionDomain: 'p', testingDomain: 't') == 'p';
@@ -22,7 +22,7 @@ enum Environment {
         return productionDomain;
       case Environment.staging:
       case Environment.stub:
-      case Environment.testing:
+      case Environment.develop:
         return testingDomain;
     }
   }
@@ -35,7 +35,7 @@ extension EnvironmentX on Environment {
         return 'staging';
       case Environment.stub:
         return 'stub';
-      case Environment.testing:
+      case Environment.develop:
         return 'dev';
       default:
         return '';

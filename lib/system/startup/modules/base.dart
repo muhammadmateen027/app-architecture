@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:stars/system/startup/graph.dart';
+import 'package:stars/utils/logger.dart';
 import 'package:stars/utils/platform/platform.dart';
 
 abstract class Module<T> {
@@ -12,7 +12,7 @@ abstract class Module<T> {
     GraphBuilder builder,
   ) async {
     try {
-      log('---- $T...');
+      logger.i('\t---- $T...');
 
       final stopwatch = Stopwatch()..start();
       final value = await doInitialize(platform, builder);
@@ -21,7 +21,7 @@ abstract class Module<T> {
 
       _drawGraph(stopwatch);
 
-      log('\t\tDone in ${stopwatch.elapsed} with $T\n');
+      logger.s('\t\tDone in ${stopwatch.elapsed} with $T');
 
       return Summary(
         duration: stopwatch.elapsed,
@@ -29,7 +29,7 @@ abstract class Module<T> {
       );
       // ignore: avoid_catches_without_on_clauses
     } catch (e) {
-      log('---- \t$T... Error: $e');
+      logger.e('---- \t$T... Error: $e');
       rethrow;
     }
   }
@@ -37,11 +37,13 @@ abstract class Module<T> {
   void _drawGraph(Stopwatch stopwatch) {
     final buffer = StringBuffer();
 
-    for (var i = 0; i < stopwatch.elapsed.inMilliseconds; ++i) {
+    for (var i = 0; i < (stopwatch.elapsed.inMilliseconds); ++i) {
       buffer.write('*');
     }
 
-    log(buffer.toString());
+    if (buffer.isNotEmpty) {
+      logger.i(buffer.toString());
+    }
   }
 
   Future<T> doInitialize(HostPlatform platform, GraphBuilder builder);
@@ -52,7 +54,7 @@ abstract class Module<T> {
     bool? forceDisable = false,
   }) {
     if (forceDisable ?? false) {
-      log(
+      logger.e(
         '\t\tModule $T is unavailable running on '
         '${hostPlatform.platform} platform.\n',
       );
@@ -62,7 +64,7 @@ abstract class Module<T> {
 
     for (final platform in supportedPlatforms) {
       if (hostPlatform.platform.runtimeType == platform.runtimeType) {
-        log(
+        logger.e(
           '\t\tModule $T is available running on '
           '${hostPlatform.platform} platform.\n',
         );
@@ -71,7 +73,7 @@ abstract class Module<T> {
       }
     }
 
-    log(
+    logger.e(
       '\t\tModule $T is unavailable running on '
       '${hostPlatform.platform} platform.\n',
     );

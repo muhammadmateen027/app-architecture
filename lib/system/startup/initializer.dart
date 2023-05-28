@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:stars/system/startup/graph.dart';
 import 'package:stars/system/startup/modules/base.dart';
 import 'package:stars/utils/environment.dart';
+import 'package:stars/utils/logger.dart';
 import 'package:stars/utils/platform/platform.dart';
 
 class Initializer {
@@ -18,21 +18,35 @@ class Initializer {
   Future<Graph> initialise([
     Environment environment = Environment.production,
   ]) async {
-    log('Initializing...\n');
-    log('\tas $hostPlatform\n');
-    log('\twith environment $environment\n');
+    logger
+      ..i('Initializing...')
+      ..s('\tas $hostPlatform')
+      ..i('\twith "${environment.toLabel.toUpperCase()}" environment')
+      ..d('');
 
     try {
+      final stopwatch = Stopwatch()..start();
       final graph = await _init(environment);
 
-      log('\nInitializing... Done');
+      logger.s('Initializing... Done');
 
+      _drawGraph(stopwatch);
       return graph;
       // ignore: avoid_catches_without_on_clauses
     } catch (e, s) {
-      log('Unable to create the graph\n$s', error: e, stackTrace: s);
+      logger.e('Unable to create the graph\n$s', error: e, stackTrace: s);
       rethrow;
     }
+  }
+
+  void _drawGraph(Stopwatch stopwatch) {
+    final buffer = StringBuffer();
+
+    for (var i = 0; i < (stopwatch.elapsed.inMilliseconds / 2); ++i) {
+      buffer.write('*');
+    }
+
+    logger.s(buffer.toString());
   }
 
   Future<Graph> _init([
@@ -65,9 +79,11 @@ class Initializer {
         .map((e) => e.duration)
         .fold(Duration.zero, (Duration p, n) => p + n);
 
-    log(
-      'Building the graph took: $overallDuration '
-      'for ${summaryList.length} modules.',
-    );
+    logger
+      ..d('')
+      ..s(
+        'Building the graph took: $overallDuration '
+        'for ${summaryList.length} modules.',
+      );
   }
 }

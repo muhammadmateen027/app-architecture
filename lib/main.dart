@@ -11,7 +11,7 @@ import 'package:stars/utils/environment.dart';
 import 'package:stars/widgets/snapshot_widget_switcher.dart';
 
 void main({
-  Environment environment = Environment.testing,
+  Environment environment = Environment.develop,
 }) {
   final appRoute = AppRouter();
 
