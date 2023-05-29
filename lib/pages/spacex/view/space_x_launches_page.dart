@@ -57,7 +57,7 @@ class _ViewModel extends Equatable {
   final void Function(dynamic) onDispatch;
   final DataState dataState;
 
-  void onLaunchTapped(final LaunchItem launchItem) => onDispatch;
+  void onLaunchTapped(final LaunchItem launchItem) {}
 
   void onRefreshTapped() => onDispatch(const RefreshLaunchesAction());
 

@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:helper_options/helper_options.dart';
+import 'package:helper_options/helper_options.dart'
+    hide NullLiftException, StringExtension;
 import 'package:stars/exception/null_lift.dart';
 
 extension EmptyStringExtension on String? {

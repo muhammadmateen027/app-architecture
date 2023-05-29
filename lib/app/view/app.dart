@@ -60,7 +60,9 @@ class _ApplicationState extends State<Application> {
             child: MaterialApp.router(
               title: 'StarXSpace',
               theme: ThemeData(
+                useMaterial3: true,
                 appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
+                scaffoldBackgroundColor: Colors.white,
                 colorScheme: ColorScheme.fromSwatch(
                   accentColor: const Color(0xFF13B9FF),
                 ),
