@@ -1,15 +1,13 @@
 import 'dart:async';
-import 'dart:developer';
 import 'package:stars/system/startup/graph.dart';
+import 'package:stars/utils/logger.dart';
 
 abstract class Module<T> {
   const Module();
 
-  Future<Summary<T>> initialize(
-    final GraphBuilder builder,
-  ) async {
+  Future<Summary<T>> initialize(final GraphBuilder builder) async {
     try {
-      log('---- $T...');
+      logger.i('---- $T...');
 
       final stopwatch = Stopwatch()..start();
       final value = await doInitialize(builder);
@@ -18,7 +16,7 @@ abstract class Module<T> {
 
       _drawGraph(stopwatch);
 
-      log('\t\tDone in ${stopwatch.elapsed} with $T\n');
+      logger.s('\t\tDone in ${stopwatch.elapsed} with $T');
 
       return Summary(
         duration: stopwatch.elapsed,
@@ -26,7 +24,7 @@ abstract class Module<T> {
       );
       // ignore: avoid_catches_without_on_clauses
     } catch (e) {
-      log('---- \t$T... Error: $e');
+      logger.e('---- \t$T... Error: $e');
       rethrow;
     }
   }
@@ -38,21 +36,16 @@ abstract class Module<T> {
       buffer.write('*');
     }
 
-    log(buffer.toString());
+    logger.i(buffer.toString());
   }
 
-  Future<T> doInitialize(
-    final GraphBuilder builder,
-  );
+  Future<T> doInitialize(final GraphBuilder builder);
 
   Future<void> doInject(final T value, final GraphBuilder builder);
 }
 
 class Summary<T> {
-  Summary({
-    required this.duration,
-    required this.value,
-  });
+  Summary({required this.duration, required this.value});
 
   final T value;
   final Duration duration;

@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:stars/api/environment.dart';
 import 'package:stars/system/startup/graph.dart';
 import 'package:stars/system/startup/modules/base.dart';
+import 'package:stars/utils/logger.dart';
 
 class Initializer {
   const Initializer(this.modules);
@@ -13,19 +13,20 @@ class Initializer {
   Future<Graph> initialise([
     final Environment environment = Environment.production,
   ]) async {
-    log('Initializing...\n');
-
-    log('\twith environment $environment\n');
+    logger
+      ..i('Initializing...\n')
+      ..i('\twith environment $environment\n')
+      ..d('');
 
     try {
       final graph = await _init(environment);
 
-      log('\nInitializing... Done');
+      logger.s('\nInitializing... Done');
 
       return graph;
       // ignore: avoid_catches_without_on_clauses
     } catch (e, s) {
-      log('Unable to create the graph\n$s', error: e, stackTrace: s);
+      logger.e('Unable to create the graph\n$s', error: e, stackTrace: s);
       rethrow;
     }
   }
@@ -58,7 +59,7 @@ class Initializer {
         .map((final e) => e.duration)
         .fold(Duration.zero, (final Duration p, final n) => p + n);
 
-    log(
+    logger.s(
       'Building the graph took: $overallDuration '
       'for ${summaryList.length} modules.',
     );

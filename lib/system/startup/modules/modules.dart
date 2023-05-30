@@ -20,10 +20,7 @@ class ApiModule extends Module<Api> {
   const ApiModule();
 
   @override
-  Future<void> doInject(
-    final Api value,
-    final GraphBuilder builder,
-  ) async =>
+  Future<void> doInject(final Api value, final GraphBuilder builder) async =>
       builder.api = value;
 
   @override
@@ -69,9 +66,7 @@ class EnvironmentModule extends Module<Environment> {
   const EnvironmentModule();
 
   @override
-  Future<Environment> doInitialize(
-    final GraphBuilder builder,
-  ) async =>
+  Future<Environment> doInitialize(final GraphBuilder builder) async =>
       builder.environment.liftNonNull;
 
   @override
@@ -88,10 +83,7 @@ class TimeDilationModule extends Module<double> {
   final double dilation;
 
   @override
-  Future<double> doInitialize(
-    final GraphBuilder builder,
-  ) async =>
-      dilation;
+  Future<double> doInitialize(final GraphBuilder builder) async => dilation;
 
   @override
   Future<void> doInject(final double value, final GraphBuilder builder) async {

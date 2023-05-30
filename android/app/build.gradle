@@ -31,6 +31,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
+flutter.minSdkVersion = 21
+flutter.compileSdkVersion = 33
+
 android {
     compileSdkVersion flutter.compileSdkVersion
 
