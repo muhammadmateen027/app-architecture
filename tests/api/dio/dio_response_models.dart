@@ -1,5 +1,3 @@
-import 'package:stars/api/dio/api.dart';
-
 // ignore: avoid_classes_with_only_static_members
 class DioResponseModels {
   static List<dynamic> launchesResponse() {
@@ -36,8 +34,8 @@ class DioResponseModels {
         },
         'static_fire_date_utc': '2012-09-29T00:00:00.000Z',
         'rocket': '5e9d0d95eda69955f709d1eb',
-        'details':
-            'Launch was scrubbed on first attempt, second launch attempt was successful',
+        'details': 'Launch was scrubbed on first attempt, second launch '
+            'attempt was successful',
         'ships': ['5ea6ed2d080df4000697c901'],
         'flight_number': 1,
         'name': 'COTS 2',

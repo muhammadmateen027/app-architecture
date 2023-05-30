@@ -1,8 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:redux/redux.dart';
 import 'package:stars/api/api.dart';
-import 'package:stars/api/api_assertion.dart';
 import 'package:stars/redux/app_state.dart';
 import 'package:stars/system/startup/graph.dart';
 

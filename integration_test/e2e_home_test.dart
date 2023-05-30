@@ -15,6 +15,7 @@ import 'utils/test_modules.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
+  // ignore: unused_local_variable
   late Widget app;
   late Graph graph;
   late List<Module<dynamic>> testModules;

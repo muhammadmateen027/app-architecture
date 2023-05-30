@@ -4,7 +4,7 @@ class StubResponderImpl extends StubResponder {
   @override
   Future<LocalResponse> respond(Request request) async {
     try {
-      switch(request.uri.path) {
+      switch (request.uri.path) {
         // case
       }
     } on LocalResponse catch (r) {

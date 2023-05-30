@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:helper_options/helper_options.dart';
 import 'package:stars/api/environment.dart';
 import 'package:stars/app/app.dart';
 import 'package:stars/bootstrap.dart';
@@ -8,6 +7,7 @@ import 'package:stars/system/startup/graph.dart';
 import 'package:stars/system/startup/initializer.dart';
 import 'package:stars/system/startup/injector.dart';
 import 'package:stars/system/startup/modules/modules.dart';
+import 'package:stars/utils/optionals/optionals.dart';
 import 'package:stars/widgets/snapshot_widget_switcher.dart';
 
 void main({final Environment environment = Environment.staging}) {

@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:helper_options/helper_options.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:stars/utils/optionals/optionals.dart';
 
 part 'dtos.g.dart';
 

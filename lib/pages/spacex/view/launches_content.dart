@@ -49,8 +49,8 @@ class _LaunchTile extends StatelessWidget {
       trailing: Icon(buildIcon),
       title: Text(launchItem.name),
       titleTextStyle: context.textTheme.labelLarge?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+        fontWeight: FontWeight.bold,
+      ),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -61,8 +61,8 @@ class _LaunchTile extends StatelessWidget {
               child: Text(
                 launchItem.dateTime.value.toString(),
                 style: context.textTheme.bodyMedium?.copyWith(
-                      color: Colors.blue,
-                    ),
+                  color: Colors.blue,
+                ),
               ),
             ),
         ],

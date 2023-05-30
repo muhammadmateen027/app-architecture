@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:helper_options/helper_options.dart';
 import 'package:meta/meta.dart';
+import 'package:stars/utils/optionals/optionals.dart';
 
 @immutable
 class LaunchItem extends Equatable {

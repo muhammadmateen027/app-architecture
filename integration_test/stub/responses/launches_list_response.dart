@@ -1,5 +1,5 @@
 class LaunchesListResponse {
-  String launches () => _launches;
+  String launches() => _launches;
 }
 
 const _launches = '''
