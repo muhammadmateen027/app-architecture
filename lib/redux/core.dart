@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:stars/pages/pages.dart';
+import 'package:stars/pages/popup/dialog/dialog_reducer.dart';
+import 'package:stars/pages/popup/snack_bar/snack_bar_reducer.dart';
 import 'package:stars/redux/app_state.dart';
 import 'package:stars/redux/epics.dart';
 import 'package:stars/redux/reducer.dart';
@@ -17,6 +19,8 @@ AppState appReducer(final AppState state, final dynamic action) {
     startupState: const StartupState.initialState(),
     spaceXLaunchesState: spaceXReducer(state.spaceXLaunchesState, action),
     systemState: systemReducer(state.systemState, action),
+    dialogState: dialogReducer(state.dialogState, action),
+    snackBarState: snackBarReducer(state.snackBarState, action),
   );
 }
 
