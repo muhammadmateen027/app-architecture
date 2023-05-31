@@ -1,4 +1,4 @@
-import 'package:stars/utils/optionals/options.dart';
+import 'package:stars/utils/optionals/option.dart';
 
 extension DoubleExtension on double? {
   double get valueOrZero => this ?? 0;
