@@ -100,7 +100,7 @@ class _EventLogger {
   }
 }
 
-class _LogStatus {
+sealed class _LogStatus {
   _LogStatus(this.tag, this.emoji, this.color);
 
   final String tag;
@@ -108,18 +108,18 @@ class _LogStatus {
   final String color;
 }
 
-class _InfoLogStatus extends _LogStatus {
+final class _InfoLogStatus extends _LogStatus {
   _InfoLogStatus() : super('INFO', 'ℹ️', '\u001b[34m');
 }
 
-class _SuccessLogStatus extends _LogStatus {
+final class _SuccessLogStatus extends _LogStatus {
   _SuccessLogStatus() : super('SUCCESS', '✅', '\u001b[32m');
 }
 
-class _ErrorLogStatus extends _LogStatus {
+final class _ErrorLogStatus extends _LogStatus {
   _ErrorLogStatus() : super('ERROR', '🥵', '\u001b[31m');
 }
 
-class _DebugLogStatus extends _LogStatus {
+final class _DebugLogStatus extends _LogStatus {
   _DebugLogStatus() : super('DEBUG', '🤡', '\u001b[36m');
 }
