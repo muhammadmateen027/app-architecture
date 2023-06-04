@@ -31,6 +31,7 @@ class _StateObserverState extends State<StateObserver>
         widget.onLifecycleChanged(LifecycleState.paused);
         break;
       case AppLifecycleState.inactive:
+      case AppLifecycleState.hidden:
       case AppLifecycleState.detached:
         widget.onLifecycleChanged(LifecycleState.background);
         break;
